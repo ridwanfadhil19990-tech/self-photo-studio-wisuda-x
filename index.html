@@ -6,17 +6,18 @@
     <title>Self Photo Studio Wisuda STAI Al-Anwar Sarang</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1e3a8a', // Deep Navy / Academic Blue
-                        secondary: '#b45309', // Rich Gold / Amber
+                        primary: '#1e3a8a', // Navy / Academic Blue
+                        secondary: '#b45309', // Rich Gold
+                        maroon: '#831843', // Graduation Maroon accent
                         accent: '#d97706',
                     },
                     fontFamily: {
@@ -31,26 +32,29 @@
             background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
         }
         .navy-gradient {
-            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        }
+        .maroon-gradient {
+            background: linear-gradient(135deg, #831843 0%, #4c0519 100%);
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-900">
 
     <!-- Header / Navbar -->
-    <header class="navy-gradient text-white shadow-lg sticky top-0 z-40 border-b border-slate-700/50">
-        <div class="max-w-6xl mx-auto px-4 py-3.5 flex flex-row justify-between items-center gap-3">
-            <div class="flex items-center space-x-2.5">
-                <div class="w-10 h-10 md:w-12 md:h-12 rounded-2xl gold-gradient flex items-center justify-center text-white text-lg md:text-xl shadow-md">
-                    <i class="fa-solid fa-camera-retro"></i>
+    <header class="navy-gradient text-white shadow-lg sticky top-0 z-40 border-b border-slate-700/50 backdrop-blur-md bg-opacity-95">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-row justify-between items-center gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 md:w-12 md:h-12 rounded-2xl gold-gradient flex items-center justify-center text-slate-900 text-lg md:text-xl shadow-lg">
+                    <i class="fa-solid fa-camera-retro font-black"></i>
                 </div>
                 <div>
-                    <h1 class="text-xs md:text-base font-bold tracking-tight">Self Photo Studio Wisuda</h1>
-                    <p class="text-[10px] md:text-xs text-amber-300 font-medium">STAI Al-Anwar Sarang Rembang</p>
+                    <h1 class="text-xs md:text-sm font-black tracking-tight leading-tight">Self Photo Studio Wisuda</h1>
+                    <p class="text-[10px] md:text-xs text-amber-300 font-semibold">STAI Al-Anwar Sarang Rembang</p>
                 </div>
             </div>
             <div class="flex items-center gap-2">
-                <a href="#booking-form" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-extrabold px-3 py-2 rounded-xl text-xs transition shadow-md flex items-center gap-1.5">
+                <a href="#booking-form" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-extrabold px-3.5 py-2 rounded-xl text-xs transition shadow-md flex items-center gap-1.5">
                     <i class="fa-solid fa-ticket"></i> <span>Booking</span>
                 </a>
                 <button onclick="openAdminLogin()" class="bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-600 px-3 py-2 rounded-xl text-xs transition flex items-center gap-1.5">
@@ -61,77 +65,84 @@
     </header>
 
     <!-- Hero / Pamflet Info Section -->
-    <section class="navy-gradient text-white py-10 md:py-16 px-4 text-center relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="max-w-4xl mx-auto relative z-10 space-y-4 md:space-y-6">
-            <div class="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3.5 py-1 rounded-full text-[11px] md:text-xs font-bold uppercase tracking-wider">
+    <section class="navy-gradient text-white py-12 md:py-20 px-4 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:20px_20px]"></div>
+        <div class="max-w-4xl mx-auto relative z-10 space-y-5">
+            <div class="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 border border-amber-500/40 px-4 py-1.5 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider shadow-sm">
                 <i class="fa-solid fa-location-dot"></i> Lokasi & Tempat: Gedung MZ Lantai 2
             </div>
-            <h2 class="text-2xl md:text-5xl font-extrabold tracking-tight leading-tight">
-                Self Photo Studio Wisuda STAI Al-Anwar
+            <h2 class="text-2xl md:text-5xl font-black tracking-tight leading-tight">
+                Self Photo Studio Wisuda <br class="hidden sm:inline"><span class="text-amber-400">STAI Al-Anwar Sarang</span>
             </h2>
             <p class="text-slate-300 text-xs md:text-base max-w-2xl mx-auto leading-relaxed">
-                Abadikan momen kelulusan terbaik bersama sahabat dan keluarga tercinta. Studio eksklusif dengan perangkat profesional Sony A7 Mark III, pencahayaan dual external flash, serta atribut lengkap.
+                Abadikan momen kelulusan berharga Anda bersama sahabat dan keluarga tercinta. Studio eksklusif dengan fasilitas lengkap, kamera profesional, dan hasil cetak berkualitas tinggi.
             </p>
 
             <!-- Facilities Pill -->
-            <div class="pt-2 flex flex-wrap justify-center gap-1.5 md:gap-2 text-[11px] text-slate-200">
-                <span class="bg-slate-800/80 px-2.5 py-1.5 rounded-lg border border-slate-700"><i class="fa-solid fa-check text-amber-400 mr-1"></i> Kamera Sony A7 Mark III</span>
-                <span class="bg-slate-800/80 px-2.5 py-1.5 rounded-lg border border-slate-700"><i class="fa-solid fa-check text-amber-400 mr-1"></i> Atribut Toga Hijau & Biru</span>
-                <span class="bg-slate-800/80 px-2.5 py-1.5 rounded-lg border border-slate-700"><i class="fa-solid fa-check text-amber-400 mr-1"></i> Kursi Keluarga & Properti</span>
+            <div class="pt-3">
+                <p class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-2">Fasilitas & Properti Pendukung:</p>
+                <div class="flex flex-wrap justify-center gap-1.5 md:gap-2 text-[11px] text-slate-200">
+                    <span class="bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700"><i class="fa-solid fa-check text-amber-400 mr-1"></i> Topi Toga (Hijau & Biru)</span>
+                    <span class="bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700"><i class="fa-solid fa-check text-amber-400 mr-1"></i> Kamera Sony A7 Mark III</span>
+                    <span class="bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700"><i class="fa-solid fa-check text-amber-400 mr-1"></i> Dual External Flash</span>
+                    <span class="bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700"><i class="fa-solid fa-check text-amber-400 mr-1"></i> Remote Control Foto</span>
+                    <span class="bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700"><i class="fa-solid fa-check text-amber-400 mr-1"></i> Arahan Gaya Langsung</span>
+                    <span class="bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700"><i class="fa-solid fa-check text-amber-400 mr-1"></i> Atribut Stiker & Kacamata</span>
+                    <span class="bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700"><i class="fa-solid fa-check text-amber-400 mr-1"></i> Kursi Keluarga & Kapasitas 15 Orang</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Package List Section (Sesuai Pamflet) -->
-    <section class="max-w-5xl mx-auto px-4 -mt-6 relative z-20 mb-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <!-- Package List Section -->
+    <section class="max-w-5xl mx-auto px-4 -mt-8 relative z-20 mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Paket Graduation 1 -->
-            <div class="bg-white rounded-3xl shadow-xl border border-slate-200 p-6 flex flex-col justify-between relative overflow-hidden group hover:border-primary transition">
-                <div class="absolute top-0 right-0 bg-primary text-white text-[11px] font-bold px-3.5 py-1 rounded-bl-2xl">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-200 p-6 md:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-primary transition">
+                <div class="absolute top-0 right-0 bg-primary text-white text-[11px] font-extrabold px-4 py-1.5 rounded-bl-2xl">
                     Paket Reguler
                 </div>
-                <div class="space-y-3">
+                <div class="space-y-4">
                     <h3 class="text-xl md:text-2xl font-black text-slate-900">Paket Graduation 1</h3>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-slate-400 line-through text-xs">Rp 115.000</span>
-                        <span class="text-2xl md:text-3xl font-extrabold text-primary">Rp 95.000</span>
+                    <div class="flex items-baseline gap-2.5">
+                        <span class="text-slate-400 line-through text-xs md:text-sm">Rp 115.000</span>
+                        <span class="text-2xl md:text-4xl font-extrabold text-primary">Rp 95.000</span>
                     </div>
-                    <ul class="space-y-2 text-xs text-slate-600 pt-2 border-t border-slate-100">
-                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-600 mt-0.5"></i> <span><strong>Durasi Sesi:</strong> 5 menit pemotretan privat</span></li>
-                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-600 mt-0.5"></i> <span><strong>File Digital:</strong> Akses file mentah full (Google Drive)</span></li>
-                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-600 mt-0.5"></i> <span><strong>Editing:</strong> 5 foto pilihan dengan proses editing (color/retouch)</span></li>
-                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-600 mt-0.5"></i> <span><strong>Cetak Fisik:</strong> 1 lembar cetak foto ukuran A4 full</span></li>
+                    <ul class="space-y-2.5 text-xs md:text-sm text-slate-600 pt-3 border-t border-slate-100">
+                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i> <span><strong>Durasi Sesi:</strong> 5 menit pemotretan privat</span></li>
+                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i> <span><strong>File Digital:</strong> Akses file mentahan full (Google Drive)</span></li>
+                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i> <span><strong>Editing:</strong> 5 foto pilihan dengan proses editing (color/retouch)</span></li>
+                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i> <span><strong>Cetak Fisik:</strong> 1 lembar cetak foto ukuran A4 full</span></li>
                     </ul>
                 </div>
-                <div class="pt-5 mt-5 border-t border-slate-100">
-                    <a href="#booking-form" onclick="selectPackageRadio('Paket Graduation 1')" class="block text-center w-full bg-primary hover:bg-blue-900 text-white font-bold py-3 rounded-xl text-xs md:text-sm transition shadow">
-                        Pilih Paket 1
+                <div class="pt-6 mt-6 border-t border-slate-100">
+                    <a href="#booking-form" onclick="selectPackageRadio('Paket Graduation 1')" class="block text-center w-full bg-primary hover:bg-blue-900 text-white font-extrabold py-3.5 rounded-2xl text-xs md:text-sm transition shadow-md">
+                        Pilih Paket 1 (Rp 95.000)
                     </a>
                 </div>
             </div>
 
             <!-- Paket Graduation 2 -->
-            <div class="bg-white rounded-3xl shadow-xl border-2 border-amber-500 p-6 flex flex-col justify-between relative overflow-hidden group">
-                <div class="absolute top-0 right-0 gold-gradient text-slate-900 text-[11px] font-extrabold px-3.5 py-1 rounded-bl-2xl shadow">
+            <div class="bg-white rounded-3xl shadow-xl border-2 border-amber-500 p-6 md:p-8 flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute top-0 right-0 gold-gradient text-slate-900 text-[11px] font-black px-4 py-1.5 rounded-bl-2xl shadow">
                     ⭐ Paling Favorit
                 </div>
-                <div class="space-y-3">
+                <div class="space-y-4">
                     <h3 class="text-xl md:text-2xl font-black text-slate-900">Paket Graduation 2</h3>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-slate-400 line-through text-xs">Rp 230.000</span>
-                        <span class="text-2xl md:text-3xl font-extrabold text-primary">Rp 155.000</span>
+                    <div class="flex items-baseline gap-2.5">
+                        <span class="text-slate-400 line-through text-xs md:text-sm">Rp 230.000</span>
+                        <span class="text-2xl md:text-4xl font-extrabold text-primary">Rp 155.000</span>
                     </div>
-                    <ul class="space-y-2 text-xs text-slate-600 pt-2 border-t border-slate-100">
-                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-600 mt-0.5"></i> <span><strong>Durasi Sesi:</strong> 10 menit pemotretan privat</span></li>
-                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-600 mt-0.5"></i> <span><strong>File Digital:</strong> Akses file mentah full (Google Drive)</span></li>
-                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-600 mt-0.5"></i> <span><strong>Editing:</strong> 10 foto pilihan dengan proses editing (color/retouch)</span></li>
-                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-600 mt-0.5"></i> <span><strong>Cetak Fisik:</strong> 2 lembar cetak foto ukuran A4 full</span></li>
+                    <ul class="space-y-2.5 text-xs md:text-sm text-slate-600 pt-3 border-t border-slate-100">
+                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i> <span><strong>Durasi Sesi:</strong> 10 menit pemotretan privat</span></li>
+                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i> <span><strong>File Digital:</strong> Akses file mentahan full (Google Drive)</span></li>
+                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i> <span><strong>Editing:</strong> 10 foto pilihan dengan proses editing (color/retouch)</span></li>
+                        <li class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i> <span><strong>Cetak Fisik:</strong> 2 lembar cetak foto ukuran A4 full</span></li>
                     </ul>
                 </div>
-                <div class="pt-5 mt-5 border-t border-slate-100">
-                    <a href="#booking-form" onclick="selectPackageRadio('Paket Graduation 2')" class="block text-center w-full gold-gradient hover:opacity-95 text-slate-900 font-extrabold py-3 rounded-xl text-xs md:text-sm transition shadow">
-                        Pilih Paket 2
+                <div class="pt-6 mt-6 border-t border-slate-100">
+                    <a href="#booking-form" onclick="selectPackageRadio('Paket Graduation 2')" class="block text-center w-full gold-gradient hover:opacity-95 text-slate-900 font-black py-3.5 rounded-2xl text-xs md:text-sm transition shadow-md">
+                        Pilih Paket 2 (Rp 155.000)
                     </a>
                 </div>
             </div>
@@ -141,14 +152,14 @@
     <!-- Main Booking Form Container -->
     <main class="max-w-4xl mx-auto px-4 py-4 w-full flex-grow" id="booking-form">
         <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
-            <div class="navy-gradient px-5 py-4 text-white flex justify-between items-center">
+            <div class="navy-gradient px-6 py-5 text-white flex justify-between items-center">
                 <div>
-                    <h3 class="font-extrabold text-sm md:text-base flex items-center gap-2">
+                    <h3 class="font-black text-sm md:text-base flex items-center gap-2.5">
                         <i class="fa-solid fa-file-invoice text-amber-400"></i> Formulir Pemesanan & Antrean Studio
                     </h3>
-                    <p class="text-[11px] text-slate-300 mt-0.5">Lengkapi urutan di bawah untuk mengamankan jadwal Anda.</p>
+                    <p class="text-[11px] text-slate-300 mt-0.5">Lengkapi data dan pilih nomor antrean Anda di bawah ini.</p>
                 </div>
-                <span class="text-[11px] bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-lg border border-amber-400/30 font-bold hidden sm:inline-block">6 Langkah Mudah</span>
+                <span class="text-[11px] bg-amber-500/20 text-amber-300 px-3 py-1 rounded-xl border border-amber-400/30 font-bold hidden sm:inline-block">6 Langkah Mudah</span>
             </div>
 
             <form id="mainBookingForm" onsubmit="handleFormSubmit(event)" class="p-5 md:p-8 space-y-8">
@@ -156,17 +167,17 @@
                 <!-- 1. Formulir Lengkap Data Diri -->
                 <div class="space-y-3 pb-6 border-b border-slate-100">
                     <div class="flex items-center gap-3">
-                        <div class="w-7 h-7 rounded-full bg-primary text-white font-bold flex items-center justify-center text-xs shadow">1</div>
+                        <div class="w-8 h-8 rounded-full bg-primary text-white font-black flex items-center justify-center text-xs shadow">1</div>
                         <h4 class="text-base font-bold text-slate-900">Formulir Lengkap Data Diri</h4>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pl-0 md:pl-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pl-0 md:pl-11">
                         <div>
                             <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">Nama Lengkap & Gelar <span class="text-red-500">*</span></label>
-                            <input type="text" id="fullName" required placeholder="Contoh: Ahmad Fauzi, S.Pd." class="w-full px-3.5 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-primary focus:outline-none text-xs md:text-sm transition">
+                            <input type="text" id="fullName" required placeholder="Contoh: Ahmad Fauzi, S.Pd." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-primary focus:outline-none text-xs md:text-sm transition">
                         </div>
                         <div>
                             <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">Nomor WhatsApp <span class="text-red-500">*</span></label>
-                            <input type="tel" id="whatsapp" required placeholder="Contoh: 081234567890" class="w-full px-3.5 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-primary focus:outline-none text-xs md:text-sm transition">
+                            <input type="tel" id="whatsapp" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-primary focus:outline-none text-xs md:text-sm transition">
                         </div>
                     </div>
                 </div>
@@ -174,23 +185,23 @@
                 <!-- 2. Pilihan Paket -->
                 <div class="space-y-3 pb-6 border-b border-slate-100">
                     <div class="flex items-center gap-3">
-                        <div class="w-7 h-7 rounded-full bg-primary text-white font-bold flex items-center justify-center text-xs shadow">2</div>
+                        <div class="w-8 h-8 rounded-full bg-primary text-white font-black flex items-center justify-center text-xs shadow">2</div>
                         <h4 class="text-base font-bold text-slate-900">Menu Pilihan Paket</h4>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pl-0 md:pl-10">
-                        <label class="relative flex items-start p-3.5 bg-white border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-primary transition group has-[:checked]:border-primary has-[:checked]:bg-blue-50/20">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pl-0 md:pl-11">
+                        <label class="relative flex items-start p-4 bg-white border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-primary transition group has-[:checked]:border-primary has-[:checked]:bg-blue-50/20">
                             <input type="radio" name="package" value="Paket Graduation 1" data-price="95000" required class="mt-1 text-primary focus:ring-primary">
                             <div class="ml-3">
-                                <span class="text-[10px] font-bold text-amber-600 uppercase">Reguler</span>
+                                <span class="text-[10px] font-black text-amber-600 uppercase">Reguler</span>
                                 <h5 class="text-sm font-extrabold text-slate-900">Paket Graduation 1</h5>
                                 <p class="text-base font-black text-primary">Rp 95.000</p>
                                 <p class="text-[11px] text-slate-500 mt-0.5">5 Menit + 1 lbr A4 + 5 foto edit</p>
                             </div>
                         </label>
-                        <label class="relative flex items-start p-3.5 bg-white border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-primary transition group has-[:checked]:border-primary has-[:checked]:bg-blue-50/20">
+                        <label class="relative flex items-start p-4 bg-white border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-primary transition group has-[:checked]:border-primary has-[:checked]:bg-blue-50/20">
                             <input type="radio" name="package" value="Paket Graduation 2" data-price="155000" required class="mt-1 text-primary focus:ring-primary">
                             <div class="ml-3">
-                                <span class="text-[10px] font-bold text-amber-600 uppercase">Favorite</span>
+                                <span class="text-[10px] font-black text-amber-600 uppercase">Favorite</span>
                                 <h5 class="text-sm font-extrabold text-slate-900">Paket Graduation 2</h5>
                                 <p class="text-base font-black text-primary">Rp 155.000</p>
                                 <p class="text-[11px] text-slate-500 mt-0.5">10 Menit + 2 lbr A4 + 10 foto edit</p>
@@ -203,24 +214,24 @@
                 <div class="space-y-3 pb-6 border-b border-slate-100">
                     <div class="flex items-center justify-between flex-wrap gap-2">
                         <div class="flex items-center gap-3">
-                            <div class="w-7 h-7 rounded-full bg-primary text-white font-bold flex items-center justify-center text-xs shadow">3</div>
+                            <div class="w-8 h-8 rounded-full bg-primary text-white font-black flex items-center justify-center text-xs shadow">3</div>
                             <h4 class="text-base font-bold text-slate-900">Status Antrean (1 s.d. 50)</h4>
                         </div>
                         <div class="text-[11px] font-semibold flex items-center gap-3">
-                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Tersedia</span>
-                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-slate-300 inline-block"></span> Terisi</span>
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block shadow-sm"></span> Tersedia</span>
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-rose-500 inline-block shadow-sm"></span> Terisi</span>
                         </div>
                     </div>
-                    <p class="text-[11px] text-slate-500 pl-0 md:pl-10">Pilih nomor antrean sesi pemotretan Anda. Slot yang sudah dipesan otomatis bertuliskan 'Terisi' dan terkunci.</p>
+                    <p class="text-[11px] text-slate-500 pl-0 md:pl-11">Pilih nomor antrean sesi pemotretan Anda. Slot yang sudah dipesan otomatis bertuliskan 'Terisi' dan terkunci untuk pemesan lain secara real-time.</p>
                     
-                    <div class="pl-0 md:pl-10">
-                        <div id="queueGrid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 p-3 bg-slate-50 rounded-2xl border border-slate-200 max-h-56 overflow-y-auto">
+                    <div class="pl-0 md:pl-11">
+                        <div id="queueGrid" class="grid grid-cols-5 sm:grid-cols-10 gap-2 p-3.5 bg-slate-50 rounded-2xl border border-slate-200 max-h-60 overflow-y-auto">
                             <!-- Populated dynamically -->
                         </div>
                         <input type="hidden" id="selectedQueue" required>
-                        <p id="queueError" class="text-xs text-red-500 mt-2 hidden font-semibold">⚠️ Silakan pilih nomor antrean terlebih dahulu.</p>
+                        <p id="queueError" class="text-xs text-rose-500 mt-2 hidden font-bold">⚠️ Silakan klik dan pilih nomor antrean terlebih dahulu.</p>
                         <div id="selectedQueueDisplay" class="mt-2.5 text-xs font-semibold text-primary hidden">
-                            Nomor Antrean Dipilih: <span id="queueBadgeText" class="bg-primary text-white px-2.5 py-1 rounded-lg"></span>
+                            Nomor Antrean Dipilih: <span id="queueBadgeText" class="bg-primary text-white px-3 py-1 rounded-xl shadow-sm"></span>
                         </div>
                     </div>
                 </div>
@@ -228,18 +239,18 @@
                 <!-- 4. Informasi Rekening Pembayaran -->
                 <div class="space-y-3 pb-6 border-b border-slate-100">
                     <div class="flex items-center gap-3">
-                        <div class="w-7 h-7 rounded-full bg-primary text-white font-bold flex items-center justify-center text-xs shadow">4</div>
+                        <div class="w-8 h-8 rounded-full bg-primary text-white font-black flex items-center justify-center text-xs shadow">4</div>
                         <h4 class="text-base font-bold text-slate-900">Informasi Rekening Pembayaran</h4>
                     </div>
-                    <div class="pl-0 md:pl-10">
-                        <div class="navy-gradient text-white p-5 rounded-2xl shadow-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                            <div class="space-y-0.5">
-                                <span class="text-[10px] uppercase tracking-wider text-amber-300 font-bold">Transfer Bank Resmi</span>
-                                <div class="text-lg font-extrabold tracking-wide">BANK BRI</div>
-                                <div class="text-base md:text-lg font-mono tracking-wider text-amber-200 font-bold" id="accountNumberText">602601014917506</div>
+                    <div class="pl-0 md:pl-11">
+                        <div class="navy-gradient text-white p-6 rounded-2xl shadow-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                            <div class="space-y-1">
+                                <span class="text-[10px] uppercase tracking-wider text-amber-300 font-extrabold bg-amber-500/20 px-2.5 py-0.5 rounded-md">Transfer Bank Resmi</span>
+                                <div class="text-lg font-black tracking-wide pt-1">BANK BRI</div>
+                                <div class="text-base md:text-xl font-mono tracking-wider text-amber-200 font-extrabold" id="accountNumberText">602601014917506</div>
                                 <p class="text-xs text-slate-300">Atas Nama: <strong class="text-white">Ridwan Fadhil</strong></p>
                             </div>
-                            <button type="button" onclick="copyRekening()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-3.5 py-2 rounded-xl text-xs transition flex items-center gap-1.5 shadow">
+                            <button type="button" onclick="copyRekening()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-black px-4 py-2.5 rounded-xl text-xs transition flex items-center gap-2 shadow-md">
                                 <i class="fa-regular fa-copy"></i> Salin No. Rekening
                             </button>
                         </div>
@@ -249,24 +260,24 @@
                 <!-- 5. Upload Bukti Pembayaran -->
                 <div class="space-y-3 pb-6 border-b border-slate-100">
                     <div class="flex items-center gap-3">
-                        <div class="w-7 h-7 rounded-full bg-primary text-white font-bold flex items-center justify-center text-xs shadow">5</div>
+                        <div class="w-8 h-8 rounded-full bg-primary text-white font-black flex items-center justify-center text-xs shadow">5</div>
                         <h4 class="text-base font-bold text-slate-900">Upload Bukti Pembayaran</h4>
                     </div>
-                    <div class="pl-0 md:pl-10 space-y-3">
+                    <div class="pl-0 md:pl-11 space-y-4">
                         <div>
-                            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">Tipe Pembayaran <span class="text-red-500">*</span></label>
+                            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">Tipe Pembayaran <span class="text-red-500">*</span></label>
                             <div class="grid grid-cols-2 gap-3">
-                                <label class="flex items-center gap-2.5 p-3 border border-slate-300 rounded-xl cursor-pointer hover:bg-slate-50">
+                                <label class="flex items-center gap-3 p-3.5 border-2 border-slate-200 rounded-2xl cursor-pointer hover:bg-slate-50 transition has-[:checked]:border-primary has-[:checked]:bg-blue-50/20">
                                     <input type="radio" name="paymentType" value="DP (Down Payment)" required class="text-primary focus:ring-primary">
                                     <div>
-                                        <p class="text-xs font-bold text-slate-900">DP (Uang Muka)</p>
+                                        <p class="text-xs font-extrabold text-slate-900">DP (Uang Muka)</p>
                                         <p class="text-[10px] text-slate-500">Minimal 50%</p>
                                     </div>
                                 </label>
-                                <label class="flex items-center gap-2.5 p-3 border border-slate-300 rounded-xl cursor-pointer hover:bg-slate-50">
+                                <label class="flex items-center gap-3 p-3.5 border-2 border-slate-200 rounded-2xl cursor-pointer hover:bg-slate-50 transition has-[:checked]:border-primary has-[:checked]:bg-blue-50/20">
                                     <input type="radio" name="paymentType" value="Lunas (Full Payment)" required class="text-primary focus:ring-primary">
                                     <div>
-                                        <p class="text-xs font-bold text-slate-900">Lunas</p>
+                                        <p class="text-xs font-extrabold text-slate-900">Lunas</p>
                                         <p class="text-[10px] text-slate-500">Pembayaran Penuh</p>
                                     </div>
                                 </label>
@@ -275,10 +286,10 @@
 
                         <div>
                             <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">Upload Foto / Screenshot Bukti Transfer <span class="text-red-500">*</span></label>
-                            <input type="file" id="paymentProof" accept="image/*" required onchange="previewImage(event)" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-primary file:text-white hover:file:bg-blue-900 transition border border-slate-300 rounded-xl p-2 bg-slate-50">
-                            <div id="imagePreviewContainer" class="mt-2.5 hidden">
-                                <p class="text-[11px] font-semibold text-slate-600 mb-1">Pratinjau Bukti Transfer:</p>
-                                <img id="outputPreview" class="w-28 h-28 object-cover rounded-xl border border-slate-300 shadow-sm">
+                            <input type="file" id="paymentProof" accept="image/*" required onchange="previewImage(event)" class="w-full text-xs text-slate-500 file:mr-3 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-primary file:text-white hover:file:bg-blue-900 transition border border-slate-300 rounded-xl p-2 bg-slate-50">
+                            <div id="imagePreviewContainer" class="mt-3 hidden">
+                                <p class="text-[11px] font-bold text-slate-700 mb-1.5">Pratinjau Bukti Transfer:</p>
+                                <img id="outputPreview" class="w-32 h-32 object-cover rounded-2xl border-2 border-primary shadow-md">
                             </div>
                         </div>
                     </div>
@@ -287,37 +298,37 @@
                 <!-- 6. Kirim Bukti & Pilih Admin WhatsApp -->
                 <div class="space-y-3">
                     <div class="flex items-center gap-3">
-                        <div class="w-7 h-7 rounded-full bg-primary text-white font-bold flex items-center justify-center text-xs shadow">6</div>
+                        <div class="w-8 h-8 rounded-full bg-primary text-white font-black flex items-center justify-center text-xs shadow">6</div>
                         <h4 class="text-base font-bold text-slate-900">Kirim Bukti Sekarang (Pilih Tujuan WhatsApp)</h4>
                     </div>
-                    <div class="pl-0 md:pl-10 space-y-3">
+                    <div class="pl-0 md:pl-11 space-y-4">
                         <div>
-                            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">Pilih Nomor WhatsApp Admin <span class="text-red-500">*</span></label>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <label class="flex items-start gap-3 p-3.5 border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-primary transition group has-[:checked]:border-primary has-[:checked]:bg-blue-50/20">
+                            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-2">Pilih Nomor WhatsApp Admin <span class="text-red-500">*</span></label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                                <label class="flex items-start gap-3 p-4 border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-primary transition group has-[:checked]:border-primary has-[:checked]:bg-blue-50/20">
                                     <input type="radio" name="adminWa" value="628561000965" required class="mt-1 text-primary focus:ring-primary">
                                     <div>
-                                        <p class="text-xs font-extrabold text-slate-900">Admin Putra</p>
+                                        <p class="text-xs font-black text-slate-900">Admin Putra</p>
                                         <p class="text-xs text-slate-600 font-mono mt-0.5">+62 856-1000-965</p>
-                                        <span class="text-[10px] text-emerald-600 font-semibold block mt-0.5">✓ Aktif untuk konfirmasi</span>
+                                        <span class="text-[10px] text-emerald-600 font-bold block mt-1">✓ Aktif untuk konfirmasi</span>
                                     </div>
                                 </label>
-                                <label class="flex items-start gap-3 p-3.5 border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-primary transition group has-[:checked]:border-primary has-[:checked]:bg-blue-50/20">
+                                <label class="flex items-start gap-3 p-4 border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-primary transition group has-[:checked]:border-primary has-[:checked]:bg-blue-50/20">
                                     <input type="radio" name="adminWa" value="6283893288223" required class="mt-1 text-primary focus:ring-primary">
                                     <div>
-                                        <p class="text-xs font-extrabold text-slate-900">Admin Putri</p>
+                                        <p class="text-xs font-black text-slate-900">Admin Putri</p>
                                         <p class="text-xs text-slate-600 font-mono mt-0.5">+62 838-9328-8223</p>
-                                        <span class="text-[10px] text-emerald-600 font-semibold block mt-0.5">✓ Aktif untuk konfirmasi</span>
+                                        <span class="text-[10px] text-emerald-600 font-bold block mt-1">✓ Aktif untuk konfirmasi</span>
                                     </div>
                                 </label>
                             </div>
                         </div>
 
-                        <div class="pt-3">
-                            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-6 rounded-2xl shadow-lg transition flex items-center justify-center gap-2.5 text-sm md:text-base">
-                                <i class="fa-brands fa-whatsapp text-xl"></i> Kirim Konfirmasi via WhatsApp
+                        <div class="pt-2">
+                            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-4 px-6 rounded-2xl shadow-xl transition flex items-center justify-center gap-3 text-sm md:text-base">
+                                <i class="fa-brands fa-whatsapp text-2xl"></i> Kirim Konfirmasi via WhatsApp
                             </button>
-                            <p class="text-center text-[11px] text-slate-500 mt-2">Data antrean terkunci otomatis & Anda diarahkan ke WhatsApp admin.</p>
+                            <p class="text-center text-[11px] text-slate-500 mt-2.5">Nomor antrean akan otomatis terkunci & Anda langsung terhubung ke WhatsApp Admin.</p>
                         </div>
                     </div>
                 </div>
@@ -327,8 +338,8 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-6 px-4 text-center border-t border-slate-800 text-xs">
-        <div class="max-w-4xl mx-auto space-y-1.5">
+    <footer class="bg-slate-900 text-slate-400 py-8 px-4 text-center border-t border-slate-800 text-xs">
+        <div class="max-w-4xl mx-auto space-y-2">
             <p class="font-bold text-slate-200 text-xs md:text-sm">Self Photo Studio Wisuda STAI Al-Anwar Sarang Rembang</p>
             <p class="text-[11px]">Lokasi: Gedung MZ Lantai 2 | Official Booking Platform</p>
             <p class="text-slate-500 text-[10px] pt-1">&copy; 2026 STAI Al-Anwar Sarang. All rights reserved.</p>
@@ -342,16 +353,16 @@
                 <i class="fa-solid fa-xmark text-base"></i>
             </button>
             <div class="text-center space-y-1">
-                <div class="w-10 h-10 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto text-lg mb-2">
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto text-xl mb-2">
                     <i class="fa-solid fa-lock"></i>
                 </div>
                 <h3 class="text-lg font-bold text-slate-900">Admin Login Panel</h3>
-                <p class="text-xs text-slate-500">Masukkan password khusus admin untuk mengakses data pemesan.</p>
+                <p class="text-xs text-slate-500">Masukkan password khusus admin untuk mengakses seluruh data pemesan.</p>
             </div>
-            <form onsubmit="handleAdminLogin(event)" class="space-y-3.5">
+            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1">Password Admin</label>
-                    <input type="password" id="adminPasswordInput" required placeholder="Masukkan password" class="w-full px-3.5 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-primary focus:outline-none text-xs">
+                    <input type="password" id="adminPasswordInput" required placeholder="Masukkan password" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-primary focus:outline-none text-xs">
                 </div>
                 <button type="submit" class="w-full bg-primary hover:bg-blue-900 text-white font-bold py-3 rounded-xl transition shadow text-xs">
                     Masuk Dashboard
@@ -362,66 +373,67 @@
 
     <!-- ADMIN DASHBOARD MODAL -->
     <div id="adminDashboardModal" class="fixed inset-0 bg-slate-950/80 z-50 hidden flex flex-col p-2 md:p-6 backdrop-blur-md overflow-y-auto">
-        <div class="bg-white w-full max-w-5xl mx-auto rounded-3xl shadow-2xl flex flex-col my-auto overflow-hidden">
+        <div class="bg-white w-full max-w-6xl mx-auto rounded-3xl shadow-2xl flex flex-col my-auto overflow-hidden">
             <!-- Dashboard Header -->
-            <div class="bg-slate-900 text-white px-5 py-3.5 flex justify-between items-center">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 rounded-xl gold-gradient flex items-center justify-center text-white text-sm">
+            <div class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl gold-gradient flex items-center justify-center text-slate-900 text-base font-black">
                         <i class="fa-solid fa-gauge-high"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-sm md:text-base">Dashboard Kontrol Pemesan</h3>
+                        <h3 class="font-black text-sm md:text-base">Dashboard Kontrol Pemesan & Antrean</h3>
                         <p class="text-[10px] text-slate-400">STAI Al-Anwar Sarang Self Photo Studio</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <button onclick="resetAllData()" class="bg-red-600/20 hover:bg-red-600 text-red-300 hover:text-white px-2.5 py-1.5 rounded-lg text-xs transition border border-red-500/30">
+                <div class="flex items-center gap-2.5">
+                    <button onclick="resetAllData()" class="bg-red-600/20 hover:bg-red-600 text-red-300 hover:text-white px-3 py-2 rounded-xl text-xs transition border border-red-500/30 flex items-center gap-1.5">
                         <i class="fa-solid fa-trash-can"></i> <span class="hidden sm:inline">Reset Semua</span>
                     </button>
-                    <button onclick="closeAdminDashboard()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 p-2 rounded-lg text-xs transition">
+                    <button onclick="closeAdminDashboard()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-xl text-xs transition">
                         <i class="fa-solid fa-xmark text-base"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Dashboard Content -->
-            <div class="p-4 md:p-6 space-y-5 overflow-y-auto max-h-[75vh]">
-                <!-- Stats -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div class="bg-blue-50 border border-blue-200 p-3.5 rounded-2xl flex items-center justify-between">
+            <div class="p-5 md:p-8 space-y-6 overflow-y-auto max-h-[75vh]">
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 border border-blue-200 p-4 rounded-2xl flex items-center justify-between">
                         <div>
                             <p class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">Total Pemesan</p>
-                            <h4 id="statTotalBookings" class="text-xl font-extrabold text-blue-900">0</h4>
+                            <h4 id="statTotalBookings" class="text-2xl font-black text-blue-900">0</h4>
                         </div>
-                        <i class="fa-solid fa-users text-blue-400 text-xl"></i>
+                        <i class="fa-solid fa-users text-blue-400 text-2xl"></i>
                     </div>
-                    <div class="bg-emerald-50 border border-emerald-200 p-3.5 rounded-2xl flex items-center justify-between">
+                    <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-2xl flex items-center justify-between">
                         <div>
                             <p class="text-[10px] font-bold text-emerald-600 uppercase tracking-wider">Antrean Terisi</p>
-                            <h4 id="statQueueFilled" class="text-xl font-extrabold text-emerald-900">0 / 50</h4>
+                            <h4 id="statQueueFilled" class="text-2xl font-black text-emerald-900">0 / 50</h4>
                         </div>
-                        <i class="fa-solid fa-ticket text-emerald-400 text-xl"></i>
+                        <i class="fa-solid fa-ticket text-emerald-400 text-2xl"></i>
                     </div>
-                    <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl flex items-center justify-between">
+                    <div class="bg-amber-50 border border-amber-200 p-4 rounded-2xl flex items-center justify-between">
                         <div>
-                            <p class="text-[10px] font-bold text-amber-600 uppercase tracking-wider">Total Estimasi</p>
-                            <h4 id="statTotalRevenue" class="text-base md:text-lg font-extrabold text-amber-900">Rp 0</h4>
+                            <p class="text-[10px] font-bold text-amber-600 uppercase tracking-wider">Total Pendapatan</p>
+                            <h4 id="statTotalRevenue" class="text-lg md:text-xl font-black text-amber-900">Rp 0</h4>
                         </div>
-                        <i class="fa-solid fa-wallet text-amber-400 text-xl"></i>
+                        <i class="fa-solid fa-wallet text-amber-400 text-2xl"></i>
                     </div>
                 </div>
 
-                <!-- Table -->
-                <div class="overflow-x-auto border border-slate-200 rounded-2xl">
-                    <table class="w-full text-left border-collapse min-w-[600px]">
+                <!-- Bookings Table -->
+                <div class="overflow-x-auto border border-slate-200 rounded-2xl shadow-sm">
+                    <table class="w-full text-left border-collapse min-w-[700px]">
                         <thead>
-                            <tr class="bg-slate-100 text-slate-700 text-[11px] uppercase font-bold tracking-wider border-b border-slate-200">
-                                <th class="p-3">Antrean</th>
-                                <th class="p-3">Nama & WhatsApp</th>
-                                <th class="p-3">Paket</th>
-                                <th class="p-3">Pembayaran</th>
-                                <th class="p-3">Waktu</th>
-                                <th class="p-3 text-center">Aksi</th>
+                            <tr class="bg-slate-100 text-slate-700 text-[11px] uppercase font-black tracking-wider border-b border-slate-200">
+                                <th class="p-3.5">Antrean</th>
+                                <th class="p-3.5">Nama & WhatsApp</th>
+                                <th class="p-3.5">Paket</th>
+                                <th class="p-3.5">Pembayaran</th>
+                                <th class="p-3.5">Bukti Transfer</th>
+                                <th class="p-3.5">Waktu</th>
+                                <th class="p-3.5 text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody id="adminBookingsTableBody" class="divide-y divide-slate-200 text-xs text-slate-700">
@@ -433,49 +445,59 @@
         </div>
     </div>
 
+    <!-- VIEW RECEIPT MODAL -->
+    <div id="receiptModal" class="fixed inset-0 bg-slate-950/80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-6 space-y-4 text-center relative">
+            <button onclick="closeReceiptModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-2">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+            <h4 class="text-base font-bold text-slate-900">Bukti Pembayaran Pemesan</h4>
+            <div class="p-2 bg-slate-100 rounded-2xl border border-slate-200">
+                <img id="modalReceiptImage" class="w-full h-80 object-contain rounded-xl" alt="Bukti Pembayaran">
+            </div>
+            <button onclick="closeReceiptModal()" class="w-full bg-primary hover:bg-blue-900 text-white font-bold py-2.5 rounded-xl text-xs transition">Tutup</button>
+        </div>
+    </div>
+
     <!-- EDIT BOOKING MODAL -->
     <div id="bookingDetailModal" class="fixed inset-0 bg-slate-950/70 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-5 space-y-3.5 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeBookingDetailModal()" class="absolute top-3.5 right-3.5 text-slate-400 hover:text-slate-700">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-6 space-y-4 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeBookingDetailModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700">
                 <i class="fa-solid fa-xmark text-base"></i>
             </button>
             <h3 class="text-base font-bold text-slate-900">Ubah Data Pemesanan</h3>
-            <form id="editBookingForm" onsubmit="saveEditedBooking(event)" class="space-y-3">
+            <form id="editBookingForm" onsubmit="saveEditedBooking(event)" class="space-y-3.5">
                 <input type="hidden" id="editBookingId">
                 <input type="hidden" id="editOldQueueNumber">
                 <div>
                     <label class="block text-[11px] font-semibold text-slate-600 mb-1">Nomor Antrean (1-50)</label>
-                    <input type="number" id="editQueueNumber" min="1" max="50" required class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                    <input type="number" id="editQueueNumber" min="1" max="50" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-primary focus:outline-none">
                 </div>
                 <div>
                     <label class="block text-[11px] font-semibold text-slate-600 mb-1">Nama Lengkap</label>
-                    <input type="text" id="editFullName" required class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                    <input type="text" id="editFullName" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-primary focus:outline-none">
                 </div>
                 <div>
                     <label class="block text-[11px] font-semibold text-slate-600 mb-1">Nomor WhatsApp</label>
-                    <input type="text" id="editWhatsapp" required class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                    <input type="text" id="editWhatsapp" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-primary focus:outline-none">
                 </div>
                 <div>
                     <label class="block text-[11px] font-semibold text-slate-600 mb-1">Paket Pemotretan</label>
-                    <select id="editPackage" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                    <select id="editPackage" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-primary focus:outline-none">
                         <option value="Paket Graduation 1">Paket Graduation 1 (Rp 95.000)</option>
                         <option value="Paket Graduation 2">Paket Graduation 2 (Rp 155.000)</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-[11px] font-semibold text-slate-600 mb-1">Tipe Pembayaran</label>
-                    <select id="editPaymentType" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
-                        <option value="DP (Down Payment)">DP (Uang Muka)</option>
+                    <select id="editPaymentType" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-primary focus:outline-none">
+                        <option value="DP (Down Payment)">DP (Down Payment)</option>
                         <option value="Lunas (Full Payment)">Lunas (Full Payment)</option>
                     </select>
                 </div>
-                <div>
-                    <label class="block text-[11px] font-semibold text-slate-600 mb-1.5">Bukti Pembayaran</label>
-                    <img id="editReceiptPreview" class="w-full h-40 object-cover rounded-xl border border-slate-300 shadow-sm">
-                </div>
-                <div class="flex gap-2.5 pt-2">
-                    <button type="submit" class="flex-1 bg-primary hover:bg-blue-900 text-white font-bold py-2.5 rounded-xl transition text-xs shadow">Simpan</button>
-                    <button type="button" onclick="closeBookingDetailModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-3 py-2.5 rounded-xl transition text-xs">Batal</button>
+                <div class="flex gap-3 pt-2">
+                    <button type="submit" class="flex-1 bg-primary hover:bg-blue-900 text-white font-bold py-3 rounded-xl transition text-xs shadow-md">Simpan Perubahan</button>
+                    <button type="button" onclick="closeBookingDetailModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-4 py-3 rounded-xl transition text-xs">Batal</button>
                 </div>
             </form>
         </div>
@@ -483,23 +505,29 @@
 
     <!-- CUSTOM MESSAGE MODAL -->
     <div id="customModal" class="fixed inset-0 bg-slate-950/70 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-sm rounded-3xl shadow-2xl p-6 text-center space-y-3.5">
-            <div id="modalIconContainer" class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-lg">
+        <div class="bg-white w-full max-w-sm rounded-3xl shadow-2xl p-6 text-center space-y-4">
+            <div id="modalIconContainer" class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-xl">
                 <i id="modalIcon" class="fa-solid fa-check"></i>
             </div>
             <h4 id="modalTitle" class="text-base font-bold text-slate-900">Notifikasi</h4>
             <p id="modalMessage" class="text-xs text-slate-600 leading-relaxed"></p>
-            <button onclick="closeCustomModal()" class="w-full bg-primary hover:bg-blue-900 text-white font-bold py-2.5 rounded-xl text-xs transition shadow">OK</button>
+            <button onclick="closeCustomModal()" class="w-full bg-primary hover:bg-blue-900 text-white font-bold py-3 rounded-xl text-xs transition shadow-md">OK</button>
         </div>
     </div>
 
     <!-- JavaScript Application Logic -->
     <script>
-        const STORAGE_KEY_BOOKINGS = 'stai_alanwar_bookings_v3';
+        const STORAGE_KEY_BOOKINGS = 'stai_alanwar_bookings_v4';
         let base64ReceiptString = "";
 
         document.addEventListener('DOMContentLoaded', () => {
             renderQueueGrid();
+            // Listen to storage events to keep queue updated across tabs/devices if sharing same browser storage
+            window.addEventListener('storage', (e) => {
+                if (e.key === STORAGE_KEY_BOOKINGS) {
+                    renderQueueGrid();
+                }
+            });
         });
 
         function selectPackageRadio(packageName) {
@@ -511,29 +539,32 @@
             });
         }
 
-        // Render Queue Numbers 1 to 50
+        // Render Queue Numbers 1 to 50 with automatic availability and "Terisi" tag
         function renderQueueGrid() {
             const grid = document.getElementById('queueGrid');
             if(!grid) return;
             grid.innerHTML = '';
             const bookings = getStoredBookings();
-            const bookedNumbers = bookings.map(b => parseInt(b.queueNumber));
-
+            
             for (let i = 1; i <= 50; i++) {
-                const isBooked = bookedNumbers.includes(i);
+                const bookingInSlot = bookings.find(b => parseInt(b.queueNumber) === i);
+                const isBooked = !!bookingInSlot;
+                
                 const btn = document.createElement('button');
                 btn.type = 'button';
-                btn.className = `py-2 rounded-xl font-bold text-xs transition border flex flex-col items-center justify-center gap-0.5 ${
+                btn.className = `p-2.5 rounded-2xl font-bold text-xs transition border flex flex-col items-center justify-center gap-1 ${
                     isBooked 
-                    ? 'bg-slate-200 text-slate-400 border-slate-300 cursor-not-allowed' 
-                    : 'bg-white text-slate-700 border-slate-300 hover:border-primary hover:bg-blue-50'
+                    ? 'bg-rose-50 text-rose-600 border-rose-200 cursor-not-allowed opacity-90' 
+                    : 'bg-white text-slate-700 border-slate-300 hover:border-primary hover:bg-blue-50/50 shadow-sm'
                 }`;
                 
                 if (isBooked) {
                     btn.disabled = true;
-                    btn.innerHTML = `<span>#${i}</span><span class="text-[8px] uppercase font-semibold text-slate-500">Terisi</span>`;
+                    // Extract first name or display Terisi with name
+                    const shortName = bookingInSlot.fullName.split(' ')[0];
+                    btn.innerHTML = `<span class="text-sm font-black">#${i}</span><span class="text-[9px] uppercase font-bold text-rose-700 truncate w-full px-0.5">Terisi</span><span class="text-[8px] text-slate-500 truncate w-full px-0.5">${shortName}</span>`;
                 } else {
-                    btn.innerHTML = `<span>#${i}</span><span class="text-[8px] uppercase font-medium text-emerald-600">Tersedia</span>`;
+                    btn.innerHTML = `<span class="text-sm font-black">#${i}</span><span class="text-[9px] uppercase font-bold text-emerald-600">Tersedia</span>`;
                     btn.onclick = () => selectQueueNumber(i, btn);
                 }
                 grid.appendChild(btn);
@@ -543,12 +574,12 @@
         function selectQueueNumber(num, element) {
             document.querySelectorAll('#queueGrid button').forEach(b => {
                 if(!b.disabled) {
-                    b.classList.remove('bg-primary', 'text-white', 'border-primary');
+                    b.classList.remove('bg-primary', 'text-white', 'border-primary', 'shadow-md');
                     b.classList.add('bg-white', 'text-slate-700');
                 }
             });
             element.classList.remove('bg-white', 'text-slate-700');
-            element.classList.add('bg-primary', 'text-white', 'border-primary');
+            element.classList.add('bg-primary', 'text-white', 'border-primary', 'shadow-md');
 
             document.getElementById('selectedQueue').value = num;
             document.getElementById('queueError').classList.add('hidden');
@@ -604,7 +635,7 @@
 
             if (!queueNumber) {
                 document.getElementById('queueError').classList.remove('hidden');
-                showCustomModal('Perhatian', 'Silakan pilih nomor antrean terlebih dahulu pada langkah ke-3.', 'error');
+                showCustomModal('Perhatian', 'Silakan klik dan pilih nomor antrean terlebih dahulu pada langkah ke-3.', 'error');
                 return;
             }
 
@@ -619,6 +650,14 @@
             const adminWa = adminWaRadio.value;
             const timestamp = new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
 
+            // Check if queue slot is already taken in storage
+            const bookings = getStoredBookings();
+            if (bookings.some(b => parseInt(b.queueNumber) === parseInt(queueNumber))) {
+                showCustomModal('Nomor Antrean Sudah Terisi', 'Mohon maaf, nomor antrean tersebut baru saja dipilih oleh pemesan lain. Silakan pilih nomor antrean lain yang masih tersedia.', 'error');
+                renderQueueGrid();
+                return;
+            }
+
             const newBooking = {
                 id: 'BK-' + Date.now(),
                 fullName,
@@ -631,7 +670,6 @@
                 timestamp
             };
 
-            const bookings = getStoredBookings();
             bookings.push(newBooking);
             saveStoredBookings(bookings);
 
@@ -649,11 +687,12 @@ Halo *${adminName}*, saya ingin mengirim konfirmasi pemesanan sesi foto wisuda d
 • *Tipe Pembayaran:* ${paymentType}
 • *Waktu Pesan:* ${timestamp}
 
-Bukti transfer telah saya upload di sistem. Mohon verifikasinya. Terima kasih!`;
+Bukti transfer telah saya upload di sistem website. Mohon verifikasinya. Terima kasih!`;
 
             const encodedMessage = encodeURIComponent(waMessage);
             const waUrl = `https://wa.me/${adminWa}?text=${encodedMessage}`;
 
+            // Reset form
             document.getElementById('mainBookingForm').reset();
             document.getElementById('imagePreviewContainer').classList.add('hidden');
             document.getElementById('selectedQueueDisplay').classList.add('hidden');
@@ -661,7 +700,7 @@ Bukti transfer telah saya upload di sistem. Mohon verifikasinya. Terima kasih!`;
             renderQueueGrid();
 
             window.open(waUrl, '_blank');
-            showCustomModal('Pemesanan Berhasil!', 'Data anda tersimpan & nomor antrean #' + queueNumber + ' resmi terkunci. Anda diarahkan ke WhatsApp admin.', 'success');
+            showCustomModal('Pemesanan Berhasil!', 'Data anda berhasil tersimpan & nomor antrean #' + queueNumber + ' resmi terkunci. Anda sekarang diarahkan ke WhatsApp admin.', 'success');
         }
 
         function showCustomModal(title, message, type = 'success') {
@@ -670,10 +709,10 @@ Bukti transfer telah saya upload di sistem. Mohon verifikasinya. Terima kasih!`;
             const iconContainer = document.getElementById('modalIconContainer');
             const icon = document.getElementById('modalIcon');
             if (type === 'success') {
-                iconContainer.className = 'w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-lg';
+                iconContainer.className = 'w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-xl';
                 icon.className = 'fa-solid fa-check';
             } else {
-                iconContainer.className = 'w-10 h-10 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center mx-auto text-lg';
+                iconContainer.className = 'w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mx-auto text-xl';
                 icon.className = 'fa-solid fa-triangle-exclamation';
             }
             document.getElementById('customModal').classList.remove('hidden');
@@ -725,7 +764,7 @@ Bukti transfer telah saya upload di sistem. Mohon verifikasinya. Terima kasih!`;
             tbody.innerHTML = '';
 
             if (bookings.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-400">Belum ada data pemesanan.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400">Belum ada data pemesanan saat ini.</td></tr>`;
                 return;
             }
 
@@ -735,26 +774,31 @@ Bukti transfer telah saya upload di sistem. Mohon verifikasinya. Terima kasih!`;
                 const tr = document.createElement('tr');
                 tr.className = 'hover:bg-slate-50 transition';
                 tr.innerHTML = `
-                    <td class="p-3 font-bold text-primary">#${b.queueNumber}</td>
-                    <td class="p-3">
+                    <td class="p-3.5 font-black text-primary text-sm">#${b.queueNumber}</td>
+                    <td class="p-3.5">
                         <p class="font-bold text-slate-900">${b.fullName}</p>
                         <p class="text-[11px] text-slate-500"><i class="fa-brands fa-whatsapp text-emerald-600"></i> ${b.whatsapp}</p>
                     </td>
-                    <td class="p-3 text-[11px]">
-                        <span class="font-semibold">${b.packageName}</span>
+                    <td class="p-3.5 text-[11px]">
+                        <span class="font-bold">${b.packageName}</span>
                         <p class="text-slate-500">Rp ${(b.packagePrice || 0).toLocaleString('id-ID')}</p>
                     </td>
-                    <td class="p-3">
-                        <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold ${b.paymentType.includes('Lunas') ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+                    <td class="p-3.5">
+                        <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold ${b.paymentType.includes('Lunas') ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
                             ${b.paymentType}
                         </span>
                     </td>
-                    <td class="p-3 text-[11px] text-slate-500">${b.timestamp}</td>
-                    <td class="p-3 text-center space-x-1.5">
-                        <button onclick="openBookingDetail('${b.id}')" class="bg-blue-50 hover:bg-blue-100 text-blue-700 px-2 py-1 rounded-lg text-xs font-bold transition" title="Ubah">
+                    <td class="p-3.5">
+                        <button onclick="viewReceipt('${b.receiptImage}')" class="bg-blue-50 hover:bg-blue-100 text-primary font-bold px-3 py-1.5 rounded-xl text-[11px] transition flex items-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-image"></i> Lihat Bukti
+                        </button>
+                    </td>
+                    <td class="p-3.5 text-[11px] text-slate-500">${b.timestamp}</td>
+                    <td class="p-3.5 text-center space-x-1.5">
+                        <button onclick="openBookingDetail('${b.id}')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 px-2.5 py-1.5 rounded-xl text-xs font-bold transition" title="Ubah Data">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
-                        <button onclick="deleteBooking('${b.id}')" class="bg-red-50 hover:bg-red-100 text-red-700 px-2 py-1 rounded-lg text-xs font-bold transition" title="Hapus">
+                        <button onclick="deleteBooking('${b.id}')" class="bg-rose-50 hover:bg-rose-100 text-rose-700 px-2.5 py-1.5 rounded-xl text-xs font-bold transition" title="Hapus Pemesan">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </td>
@@ -763,14 +807,23 @@ Bukti transfer telah saya upload di sistem. Mohon verifikasinya. Terima kasih!`;
             });
         }
 
+        function viewReceipt(imgBase64) {
+            document.getElementById('modalReceiptImage').src = imgBase64 || 'https://placehold.co/300x200/e2e8f0/64748b?text=No+Image';
+            document.getElementById('receiptModal').classList.remove('hidden');
+        }
+
+        function closeReceiptModal() {
+            document.getElementById('receiptModal').classList.add('hidden');
+        }
+
         function deleteBooking(id) {
-            if (confirm('Apakah Anda yakin ingin menghapus pemesanan ini? Nomor antrean akan kembali tersedia untuk pemesan lain.')) {
+            if (confirm('Apakah Anda yakin ingin menghapus pemesanan ini? Nomor antrean akan kembali tersedia (kosong) untuk pemesan lain.')) {
                 let bookings = getStoredBookings();
                 bookings = bookings.filter(b => b.id !== id);
                 saveStoredBookings(bookings);
                 renderAdminDashboardData();
                 renderQueueGrid();
-                showCustomModal('Berhasil', 'Data pemesanan berhasil dihapus.', 'success');
+                showCustomModal('Berhasil', 'Data pemesanan berhasil dihapus dan antrean telah dikosongkan.', 'success');
             }
         }
 
@@ -786,7 +839,6 @@ Bukti transfer telah saya upload di sistem. Mohon verifikasinya. Terima kasih!`;
             document.getElementById('editWhatsapp').value = b.whatsapp;
             document.getElementById('editPackage').value = b.packageName;
             document.getElementById('editPaymentType').value = b.paymentType;
-            document.getElementById('editReceiptPreview').src = b.receiptImage || 'https://placehold.co/300x200/e2e8f0/64748b?text=No+Image';
 
             document.getElementById('bookingDetailModal').classList.remove('hidden');
         }
@@ -804,7 +856,7 @@ Bukti transfer telah saya upload di sistem. Mohon verifikasinya. Terima kasih!`;
             let bookings = getStoredBookings();
 
             if (newQueue !== oldQueue) {
-                const isTaken = bookings.some(b => b.queueNumber === newQueue && b.id !== id);
+                const isTaken = bookings.some(b => parseInt(b.queueNumber) === newQueue && b.id !== id);
                 if (isTaken) {
                     showCustomModal('Perhatian', `Nomor antrean #${newQueue} sudah terisi oleh pemesan lain.`, 'error');
                     return;
