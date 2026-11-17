@@ -1,867 +1,513 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Self Photo Studio Wisuda STAI Al-Anwar Sarang</title>
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: {
+                            800: '#581c25',
+                            900: '#43141a',
+                            950: '#2b0c10',
+                            DEFAULT: '#6b1d2f'
+                        },
+                        gold: {
+                            500: '#d97706',
+                            600: '#b45309',
+                            DEFAULT: '#c29b38',
+                            light: '#fef3c7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-amber-500 selection:text-slate-950">
+<body class="bg-stone-50 font-sans text-stone-800 antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- Navbar -->
-    <header class="sticky top-0 z-40 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-300 flex items-center justify-center text-slate-950 font-bold shadow-lg shadow-amber-500/20">
-                    <i class="fa-solid fa-camera-retro text-lg"></i>
+    <!-- TOP HEADER -->
+    <header class="bg-maroon text-white shadow-md sticky top-0 z-40">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="app.goHome()">
+                <div class="w-10 h-10 rounded-full bg-gold flex items-center justify-center text-maroon font-bold shadow">
+                    <i class="fa-solid fa-camera-retro"></i>
                 </div>
                 <div>
-                    <h1 class="text-base sm:text-lg font-bold tracking-tight text-white">Self Photo Studio STAI Al-Anwar</h1>
-                    <p class="text-xs text-amber-400 font-medium">Wisuda Sarang • Gedung MZ Lantai 2</p>
+                    <h1 class="font-serif font-bold text-lg leading-tight text-amber-100">Self Photo Studio</h1>
+                    <p class="text-xs text-stone-300">Wisuda STAI Al-Anwar Sarang</p>
                 </div>
             </div>
-            
-            <div class="flex items-center space-x-3">
-                <div id="userBadge" class="hidden items-center space-x-2 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-full text-xs">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span id="userNameDisplay" class="text-slate-300 font-medium truncate max-w-[120px] sm:max-w-[180px]"></span>
-                    <button onclick="logoutUser()" class="text-slate-400 hover:text-red-400 ml-1 transition"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
-                </div>
-                <button onclick="openAdminLoginModal()" class="bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center space-x-2 transition shadow-sm">
-                    <i class="fa-solid fa-lock text-amber-400"></i>
-                    <span class="hidden sm:inline">Admin Login</span>
-                </button>
+            <div class="text-xs text-amber-200 bg-amber-500/20 border border-amber-400/30 px-3 py-1.5 rounded-lg font-medium">
+                <i class="fa-solid fa-location-dot mr-1"></i> Gedung MZ Lantai 2
             </div>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="flex-grow">
-        
-        <!-- Hero Section -->
-        <section class="relative overflow-hidden py-12 sm:py-20 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 border-b border-slate-900">
-            <div class="absolute inset-0 opacity-25 bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:24px_24px]"></div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center max-w-3xl mx-auto space-y-6">
-                    <span class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/20 px-4 py-1.5 rounded-full text-xs font-semibold text-amber-400">
-                        <i class="fa-solid fa-award"></i>
-                        <span>Official Booking & Antrean Wisuda STAI Al-Anwar</span>
-                    </span>
-                    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                        Abadikan Momen Kebahagiaan Wisudamu Bersama <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-200">Self Photo Studio</span>
-                    </h2>
-                    <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
-                        Lokasi: <strong class="text-white">Gedung MZ Lantai 2</strong>. Nikmati pengalaman sesi foto mandiri dengan kualitas profesional, peralatan lengkap, dan hasil memuaskan.
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow max-w-5xl w-full mx-auto p-4 sm:p-6">
+
+        <!-- VIEW 1: GATE / LOGIN USER (Nama Lengkap & No WhatsApp) -->
+        <div id="view-gate" class="max-w-md mx-auto bg-white rounded-2xl shadow-xl border border-stone-200 overflow-hidden my-8">
+            <div class="bg-gradient-to-br from-maroon to-maroon-950 p-6 text-white text-center relative">
+                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-gold/10 rounded-full blur-xl"></div>
+                <div class="inline-block p-3 bg-white/10 rounded-2xl backdrop-blur-md mb-3 text-gold">
+                    <i class="fa-solid fa-graduation-cap text-3xl"></i>
+                </div>
+                <h2 class="font-serif text-2xl font-bold text-amber-100">Booking Sesi Foto</h2>
+                <p class="text-stone-300 text-xs mt-1">Wisuda STAI Al-Anwar Sarang Rembang</p>
+            </div>
+            <div class="p-6 sm:p-8">
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-6 text-xs text-amber-800 flex items-start space-x-2">
+                    <i class="fa-solid fa-circle-info text-amber-600 mt-0.5"></i>
+                    <p>Silakan masukkan Nama Lengkap dan Nomor WhatsApp Anda sebelum masuk ke halaman pemilihan paket studio.</p>
+                </div>
+                <form id="form-login" onsubmit="app.handleLogin(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-600 uppercase tracking-wider mb-1">Nama Lengkap & Gelar</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-stone-400">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                            <input type="text" id="login-name" required placeholder="cth: Ahmad Fulan, S.Pd." 
+                                class="w-full pl-10 pr-4 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-maroon text-sm font-medium">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-600 uppercase tracking-wider mb-1">Nomor WhatsApp Aktif</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-stone-400">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </span>
+                            <input type="tel" id="login-wa" required placeholder="cth: 081234567890" 
+                                class="w-full pl-10 pr-4 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-maroon text-sm font-medium">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full py-3.5 bg-maroon hover:bg-maroon-900 text-amber-100 rounded-xl font-bold shadow-lg shadow-maroon/20 transition flex items-center justify-center space-x-2">
+                        <span>Masuk ke Dashboard Pemesanan</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- VIEW 2: DASHBOARD PEMESAN -->
+        <div id="view-dashboard" class="hidden space-y-6">
+            <!-- User Welcome Banner -->
+            <div class="bg-gradient-to-r from-maroon-900 to-maroon text-white p-5 sm:p-6 rounded-2xl shadow-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <span class="bg-gold text-maroon-950 font-bold text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wider">Pemesan Aktif</span>
+                    <h2 class="text-xl sm:text-2xl font-serif font-bold text-amber-100 mt-1" id="dash-user-name">-</h2>
+                    <p class="text-stone-300 text-xs flex items-center gap-2 mt-0.5">
+                        <i class="fa-brands fa-whatsapp text-emerald-400"></i> <span id="dash-user-wa">-</span>
                     </p>
-                    
-                    <div id="heroActionContainer" class="pt-4">
-                        <button onclick="checkIdentityAndScroll()" class="bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-slate-950 font-bold px-8 py-4 rounded-2xl shadow-xl shadow-amber-500/20 transform hover:-translate-y-0.5 transition duration-200 text-sm sm:text-base flex items-center justify-center space-x-3 mx-auto">
-                            <i class="fa-solid fa-calendar-check text-lg"></i>
-                            <span>Mulai Booking & Pilih Nomor Antrean</span>
+                </div>
+                <button onclick="app.logoutUser()" class="bg-white/10 hover:bg-white/20 text-stone-200 text-xs px-3.5 py-2 rounded-xl transition border border-white/20">
+                    <i class="fa-solid fa-right-from-bracket mr-1"></i> Ganti Data / Keluar
+                </button>
+            </div>
+
+            <!-- Studio Info & Pamflet Highlight -->
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-5 sm:p-6">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="p-2.5 bg-amber-100 text-maroon rounded-xl"><i class="fa-solid fa-location-dot text-lg"></i></div>
+                    <div>
+                        <h3 class="font-serif font-bold text-lg text-maroon">Lokasi & Fasilitas Studio</h3>
+                        <p class="text-xs text-stone-500">Gedung MZ Lantai 2 • Kapasitas hingga 15 orang</p>
+                    </div>
+                </div>
+                <div class="bg-stone-50 rounded-xl p-4 text-xs text-stone-700 leading-relaxed border border-stone-200 grid sm:grid-cols-2 gap-3">
+                    <div>
+                        <p class="font-semibold text-stone-900 mb-1"><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Fasilitas & Properti:</p>
+                        <p class="text-stone-600">Atribut Topi Toga (pilihan warna hijau dan biru), Perangkat kamera Sony A7 Mark III, Pencahayaan Dual external flash, Remote control foto, Arahkan gaya langsung dari tim.</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-stone-900 mb-1"><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Properti Tambahan:</p>
+                        <p class="text-stone-600">Atribut Stiker (graduation stickers), pilihan kacamata hitam, Kursi Keluarga, Background abu-abu abstrak.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 1: PILIH PAKET -->
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-5 sm:p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-serif font-bold text-lg text-maroon flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-full bg-maroon text-white text-xs flex items-center justify-center font-sans">1</span>
+                        Pilih Paket Graduation
+                    </h3>
+                    <span class="text-xs text-stone-400">*Wajib pilih salah satu</span>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <!-- Paket 1 -->
+                    <label id="card-pkg-1" onclick="app.selectPackage(1)" class="cursor-pointer border-2 border-stone-200 hover:border-maroon rounded-xl p-5 transition relative bg-stone-50/50 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="bg-maroon/10 text-maroon font-bold text-xs px-3 py-1 rounded-full">Paket Graduation 1</span>
+                                <input type="radio" name="selected_pkg" id="radio-pkg-1" value="1" class="accent-maroon w-4 h-4">
+                            </div>
+                            <div class="my-3">
+                                <span class="text-xs text-stone-400 line-through">Rp115.000</span>
+                                <div class="text-2xl font-bold font-serif text-maroon">Rp95.000</div>
+                            </div>
+                            <ul class="text-xs text-stone-600 space-y-1.5 mt-3 border-t border-stone-200 pt-3">
+                                <li><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Durasi Sesi Pemotretan 5 menit</li>
+                                <li><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Akses file mentahan full (Google Drive)</li>
+                                <li><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> 5 foto pilihan dengan proses Editing (color/retouch)</li>
+                                <li><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Cetak Fisik 1 lembar cetak foto ukuran A4 full</li>
+                            </ul>
+                        </div>
+                    </label>
+
+                    <!-- Paket 2 -->
+                    <label id="card-pkg-2" onclick="app.selectPackage(2)" class="cursor-pointer border-2 border-stone-200 hover:border-maroon rounded-xl p-5 transition relative bg-stone-50/50 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="bg-maroon text-amber-100 font-bold text-xs px-3 py-1 rounded-full">Paket Graduation 2 (Favorit)</span>
+                                <input type="radio" name="selected_pkg" id="radio-pkg-2" value="2" class="accent-maroon w-4 h-4">
+                            </div>
+                            <div class="my-3">
+                                <span class="text-xs text-stone-400 line-through">Rp230.000</span>
+                                <div class="text-2xl font-bold font-serif text-maroon">Rp155.000</div>
+                            </div>
+                            <ul class="text-xs text-stone-600 space-y-1.5 mt-3 border-t border-stone-200 pt-3">
+                                <li><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Durasi Sesi Pemotretan 10 menit</li>
+                                <li><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Akses file mentahan full (Google Drive)</li>
+                                <li><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> 10 foto pilihan dengan proses Editing (color/retouch)</li>
+                                <li><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Cetak Fisik 2 lembar cetak foto ukuran A4 full</li>
+                            </ul>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- KETERANGAN NOMOR ANTREAN -->
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 sm:p-6 flex items-start space-x-3">
+                <div class="p-2.5 bg-amber-500 text-white rounded-xl text-lg"><i class="fa-solid fa-ticket"></i></div>
+                <div>
+                    <h4 class="font-serif font-bold text-base text-amber-900">Informasi Nomor Antrean</h4>
+                    <p class="text-xs text-amber-800 mt-1 leading-relaxed">
+                        Nomor antrean dan jadwal sesi foto akan dikirim langsung oleh admin via WhatsApp setelah Anda melakukan konfirmasi pembayaran dan data divalidasi.
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 2: PEMBAYARAN & KONFIRMASI -->
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-5 sm:p-6">
+                <h3 class="font-serif font-bold text-lg text-maroon flex items-center gap-2 mb-4">
+                    <span class="w-7 h-7 rounded-full bg-maroon text-white text-xs flex items-center justify-center font-sans">2</span>
+                    Pembayaran & Konfirmasi Bukti Transfer
+                </h3>
+
+                <!-- Info Rekening -->
+                <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-4 mb-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-blue-900 text-white rounded-xl flex items-center justify-center font-bold text-lg shadow">
+                            BRI
+                        </div>
+                        <div>
+                            <p class="text-xs text-stone-500">Transfer pembayaran DP / Lunas ke Rekening:</p>
+                            <p class="font-mono font-bold text-stone-900 text-base sm:text-lg select-all">6026 0101 4917 506</p>
+                            <p class="text-xs font-medium text-maroon">Atas Nama: RIDWAN FADHIL</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                    <!-- Pilihan Pembayaran -->
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-600 uppercase tracking-wider mb-1">Jenis Pembayaran</label>
+                        <select id="payment-type" class="w-full p-3 bg-stone-50 border border-stone-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-maroon">
+                            <option value="DP">DP (Uang Muka)</option>
+                            <option value="Lunas">Lunas (Pelunasan)</option>
+                        </select>
+                    </div>
+                    <!-- Upload Bukti -->
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-600 uppercase tracking-wider mb-1">Upload Bukti Pembayaran</label>
+                        <input type="file" id="payment-proof" accept="image/*" onchange="app.previewImage(event)" 
+                            class="w-full text-xs text-stone-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-maroon file:text-amber-100 hover:file:bg-maroon-900 file:cursor-pointer cursor-pointer bg-stone-50 border border-stone-200 rounded-xl">
+                    </div>
+                </div>
+
+                <!-- Preview Image container -->
+                <div id="proof-preview-container" class="hidden mb-6">
+                    <p class="text-xs font-semibold text-stone-600 mb-2">Pratinjau Bukti Transfer:</p>
+                    <div class="relative w-32 h-32 border border-stone-200 rounded-xl overflow-hidden bg-stone-100">
+                        <img id="proof-img-tag" src="" alt="Bukti Transfer" class="w-full h-full object-cover">
+                        <button type="button" onclick="app.removeProof()" class="absolute top-1 right-1 bg-red-600 text-white w-6 h-6 rounded-full text-xs flex items-center justify-center shadow">
+                            <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Package Cards Preview -->
-                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
-                    <!-- Paket 1 -->
-                    <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-amber-500/50 transition duration-300 shadow-xl relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 bg-amber-500 text-slate-950 font-bold text-xs px-4 py-1.5 rounded-bl-2xl">
-                            Populer
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition">Paket Graduation 1</h3>
-                            <div class="mt-4 flex items-baseline">
-                                <span class="text-xs text-slate-500 line-through mr-2">Rp 115.000</span>
-                                <span class="text-3xl sm:text-4xl font-extrabold text-amber-400">Rp 95.000</span>
+                <!-- Pilih Admin Tujuan WhatsApp -->
+                <div class="mb-6">
+                    <label class="block text-xs font-semibold text-stone-600 uppercase tracking-wider mb-2">Kirim Konfirmasi Struk ke WhatsApp Admin:</label>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <label class="cursor-pointer border-2 border-stone-200 has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50/50 rounded-xl p-3.5 flex items-center space-x-3 transition">
+                            <input type="radio" name="admin_target" value="putra" checked class="accent-emerald-600 w-4 h-4">
+                            <div>
+                                <p class="font-bold text-xs text-stone-800">Admin Putra</p>
+                                <p class="text-xs text-stone-500">+62 856-1000-965</p>
                             </div>
-                            <ul class="mt-6 space-y-3 text-sm text-slate-300">
-                                <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-amber-400"></i><span>Durasi Sesi Pemotretan: <strong>5 Menit</strong></span></li>
-                                <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-amber-400"></i><span>Akses file mentahan full (Google Drive)</span></li>
-                                <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-amber-400"></i><span><strong>5 foto pilihan</strong> dengan proses Editing (color/retouch)</span></li>
-                                <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-amber-400"></i><span>Cetak Fisik <strong>1 lembar</strong> ukuran A4 full</span></li>
-                            </ul>
-                        </div>
-                        <div class="mt-8 pt-6 border-t border-slate-800">
-                            <button onclick="selectPackageAndBook('Paket Graduation 1', 95000)" class="w-full bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-white font-semibold py-3 rounded-xl transition text-sm flex items-center justify-center space-x-2">
-                                <span>Pilih Paket 1</span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Paket 2 -->
-                    <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-amber-500/50 transition duration-300 shadow-xl relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 bg-yellow-400 text-slate-950 font-bold text-xs px-4 py-1.5 rounded-bl-2xl">
-                            Best Value
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition">Paket Graduation 2</h3>
-                            <div class="mt-4 flex items-baseline">
-                                <span class="text-xs text-slate-500 line-through mr-2">Rp 230.000</span>
-                                <span class="text-3xl sm:text-4xl font-extrabold text-amber-400">Rp 155.000</span>
+                        </label>
+                        <label class="cursor-pointer border-2 border-stone-200 has-[:checked]:border-emerald-600 has-[:checked]:bg-emerald-50/50 rounded-xl p-3.5 flex items-center space-x-3 transition">
+                            <input type="radio" name="admin_target" value="putri" class="accent-emerald-600 w-4 h-4">
+                            <div>
+                                <p class="font-bold text-xs text-stone-800">Admin Putri</p>
+                                <p class="text-xs text-stone-500">+62 838-9328-8223</p>
                             </div>
-                            <ul class="mt-6 space-y-3 text-sm text-slate-300">
-                                <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-amber-400"></i><span>Durasi Sesi Pemotretan: <strong>10 Menit</strong></span></li>
-                                <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-amber-400"></i><span>Akses file mentahan full (Google Drive)</span></li>
-                                <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-amber-400"></i><span><strong>10 foto pilihan</strong> dengan proses Editing (color/retouch)</span></li>
-                                <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-amber-400"></i><span>Cetak Fisik <strong>2 lembar</strong> ukuran A4 full</span></li>
-                            </ul>
-                        </div>
-                        <div class="mt-8 pt-6 border-t border-slate-800">
-                            <button onclick="selectPackageAndBook('Paket Graduation 2', 155000)" class="w-full bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-white font-semibold py-3 rounded-xl transition text-sm flex items-center justify-center space-x-2">
-                                <span>Pilih Paket 2</span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-                        </div>
+                        </label>
                     </div>
                 </div>
 
-                <!-- Fasilitas & Properti -->
-                <div class="mt-16 bg-slate-900/50 border border-slate-800 rounded-3xl p-6 sm:p-8 max-w-4xl mx-auto">
-                    <h4 class="text-base font-bold text-white mb-4 flex items-center space-x-2">
-                        <i class="fa-solid fa-star text-amber-400"></i>
-                        <span>Fasilitas & Properti Pendukung Studio:</span>
-                    </h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs sm:text-sm text-slate-300">
-                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 flex items-start space-x-3">
-                            <i class="fa-solid fa-camera text-amber-400 mt-1"></i>
-                            <span>Atribut Topi Toga (hijau & biru) & Kamera Sony A7 Mark III</span>
-                        </div>
-                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 flex items-start space-x-3">
-                            <i class="fa-solid fa-bolt text-amber-400 mt-1"></i>
-                            <span>Pencahayaan Dual external flash & Remote control foto</span>
-                        </div>
-                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 flex items-start space-x-3">
-                            <i class="fa-solid fa-user-tie text-amber-400 mt-1"></i>
-                            <span>Arahan gaya (pose) langsung dari tim profesional</span>
-                        </div>
-                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 flex items-start space-x-3">
-                            <i class="fa-solid fa-glasses text-amber-400 mt-1"></i>
-                            <span>Atribut Stiker (graduation stickers) & Pilihan kacamata hitam</span>
-                        </div>
-                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 flex items-start space-x-3">
-                            <i class="fa-solid fa-chair text-amber-400 mt-1"></i>
-                            <span>Kursi Keluarga & Background abu-abu abstrak</span>
-                        </div>
-                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 flex items-start space-x-3">
-                            <i class="fa-solid fa-users text-amber-400 mt-1"></i>
-                            <span>Kapasitas studio hingga 15 orang pengunjung</span>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- Tombol Submit -->
+                <button type="button" onclick="app.submitBooking()" class="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold shadow-lg shadow-emerald-600/20 transition flex items-center justify-center space-x-2 text-sm sm:text-base">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span>Konfirmasi & Kirim Pesan ke WhatsApp Admin</span>
+                </button>
             </div>
-        </section>
-
-        <!-- Queue Section (Dashboard Booking) -->
-        <section id="queueSection" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between pb-8 border-b border-slate-800 gap-4">
-                    <div>
-                        <h3 class="text-2xl font-bold text-white">Kuota Antrean Studio (1 - 50)</h3>
-                        <p class="text-slate-400 text-sm mt-1">Pilih nomor antrean yang masih kosong (warna hijau). Data tersinkron secara real-time.</p>
-                    </div>
-                    <div class="flex items-center space-x-6 text-xs sm:text-sm">
-                        <div class="flex items-center space-x-2">
-                            <span class="w-3.5 h-3.5 rounded-full bg-emerald-500 inline-block"></span>
-                            <span class="text-slate-300 font-medium">Tersedia (<span id="countAvailable">50</span>)</span>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <span class="w-3.5 h-3.5 rounded-full bg-red-500 inline-block"></span>
-                            <span class="text-slate-300 font-medium">Terisi (<span id="countTaken">0</span>)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Grid Number 1 - 50 -->
-                <div id="queueGrid" class="mt-8 grid grid-cols-5 sm:grid-cols-10 gap-3">
-                    <!-- Generated via JS -->
-                </div>
-            </div>
-        </section>
+        </div>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-900 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-            <div class="flex justify-center space-x-6 text-xl text-slate-400">
-                <a href="#" class="hover:text-amber-400 transition"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="hover:text-amber-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
-            </div>
-            <p class="text-xs text-slate-500">
-                &copy; 2026 Self Photo Studio Wisuda STAI Al-Anwar Sarang. Gedung MZ Lantai 2.<br>
-                Contact Person Admin Putra: <strong class="text-slate-300">+62 856-1000-965</strong> | Admin Putri: <strong class="text-slate-300">+62 838-9328-8223</strong>
-            </p>
+    <!-- FOOTER -->
+    <footer class="bg-stone-900 text-stone-400 py-6 mt-12 text-xs text-center border-t border-stone-800">
+        <div class="max-w-5xl mx-auto px-4 space-y-2">
+            <p class="font-semibold text-stone-300">Self Photo Studio Wisuda STAI Al-Anwar Sarang Rembang</p>
+            <p>Contact Person & Booking: <span class="text-amber-400">+62 856-1000-965 (Admin Putra)</span> | <span class="text-amber-400">+62 838-9328-8223 (Admin Putri)</span></p>
+            <p class="text-stone-500">&copy; 2026 STAI Al-Anwar Sarang. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- MODAL: Identity Gate (Nama & No WA di awal) -->
-    <div id="identityModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
-            <div class="text-center space-y-2 mb-6">
-                <div class="w-12 h-12 bg-amber-500/10 rounded-2xl border border-amber-500/20 flex items-center justify-center mx-auto text-amber-400 text-xl font-bold">
-                    <i class="fa-solid fa-id-card"></i>
+    <!-- MODAL: STRUK SUKSES -->
+    <div id="modal-receipt" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-stone-200 relative">
+            <div class="text-center mb-4">
+                <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2 text-2xl shadow-inner">
+                    <i class="fa-solid fa-circle-check"></i>
                 </div>
-                <h3 class="text-xl font-bold text-white">Identitas Pengunjung</h3>
-                <p class="text-slate-400 text-xs sm:text-sm">Masukkan Nama Lengkap dan Nomor WhatsApp aktif Anda untuk memulai pemesanan.</p>
+                <h3 class="font-serif font-bold text-xl text-maroon">Pemesanan Berhasil Disimpan!</h3>
+                <p class="text-stone-500 text-xs mt-1">Struk & invoice digital siap dikirim ke WhatsApp Admin.</p>
             </div>
 
-            <form id="identityForm" onsubmit="saveIdentity(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nama Lengkap</label>
-                    <input type="text" id="inputFullName" required placeholder="Contoh: Ahmad Fauzi" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 transition">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nomor WhatsApp Aktif</label>
-                    <input type="tel" id="inputWhatsApp" required placeholder="Contoh: 081234567890" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 transition">
-                </div>
-                <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-slate-950 font-bold py-3.5 rounded-xl transition text-sm shadow-lg shadow-amber-500/20">
-                    Lanjut ke Pemesanan
+            <div id="receipt-content" class="bg-stone-50 border border-stone-200 rounded-xl p-4 text-xs font-mono space-y-2 mb-6">
+                <!-- Struk text -->
+            </div>
+
+            <div class="flex space-x-3">
+                <button onclick="app.closeReceiptModal()" class="flex-1 py-3 bg-stone-200 hover:bg-stone-300 text-stone-700 rounded-xl font-bold text-xs transition">
+                    Tutup
                 </button>
-            </form>
+                <a id="whatsapp-send-btn" href="#" target="_blank" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs transition flex items-center justify-center space-x-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>Kirim ke WhatsApp</span>
+                </a>
+            </div>
         </div>
     </div>
 
-    <!-- MODAL: Booking & Payment Form -->
-    <div id="bookingModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
-            <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
-                <div>
-                    <h3 class="text-lg font-bold text-white">Form Pemesanan & Pembayaran</h3>
-                    <p class="text-xs text-amber-400">Nomor Antrean: <span id="modalQueueNum" class="font-bold text-white"></span></p>
-                </div>
-                <button onclick="closeModal('bookingModal')" class="text-slate-400 hover:text-white transition text-lg"><i class="fa-solid fa-xmark"></i></button>
-            </div>
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 bg-stone-900 text-white px-4 py-3 rounded-xl shadow-xl text-xs flex items-center space-x-3 transform translate-y-20 opacity-0 transition-all duration-300">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toast-msg">Notifikasi pesan</span>
+    </div>
 
-            <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-4">
-                <input type="hidden" id="selectedQueueNumber">
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
+    <script>
+        const app = {
+            currentUser: null,
+            selectedPkg: 1,
+            uploadedProofBase64: null,
+
+            packages: {
+                1: { name: "Paket Graduation 1", price: 95000, desc: "5 menit, GDrive full raw, 5 foto edit, 1 cetak A4 full" },
+                2: { name: "Paket Graduation 2", price: 155000, desc: "10 menit, GDrive full raw, 10 foto edit, 2 cetak A4 full" }
+            },
+
+            init() {
+                const savedUser = localStorage.getItem('stai_photo_user');
+                if (savedUser) {
+                    this.currentUser = JSON.parse(savedUser);
+                    this.showDashboard();
+                } else {
+                    this.showGate();
+                }
+            },
+
+            showGate() {
+                document.getElementById('view-gate').classList.remove('hidden');
+                document.getElementById('view-dashboard').classList.add('hidden');
+            },
+
+            showDashboard() {
+                document.getElementById('view-gate').classList.add('hidden');
+                document.getElementById('view-dashboard').classList.remove('hidden');
+
+                document.getElementById('dash-user-name').innerText = this.currentUser.name;
+                document.getElementById('dash-user-wa').innerText = this.currentUser.whatsapp;
+
+                this.selectPackage(1);
+            },
+
+            handleLogin(e) {
+                e.preventDefault();
+                const name = document.getElementById('login-name').value.trim();
+                const wa = document.getElementById('login-wa').value.trim();
+
+                if (!name || !wa) {
+                    this.showToast("Mohon isi Nama dan Nomor WhatsApp dengan benar.", "error");
+                    return;
+                }
+
+                this.currentUser = { name, whatsapp: wa };
+                localStorage.setItem('stai_photo_user', JSON.stringify(this.currentUser));
+                this.showDashboard();
+                this.showToast("Berhasil masuk ke Dashboard Pemesanan!");
+            },
+
+            logoutUser() {
+                localStorage.removeItem('stai_photo_user');
+                this.currentUser = null;
+                document.getElementById('login-name').value = '';
+                document.getElementById('login-wa').value = '';
+                this.showGate();
+                this.showToast("Anda telah keluar dari sesi.");
+            },
+
+            selectPackage(pkgId) {
+                this.selectedPkg = pkgId;
+                document.getElementById('radio-pkg-1').checked = (pkgId === 1);
+                document.getElementById('radio-pkg-2').checked = (pkgId === 2);
+
+                const card1 = document.getElementById('card-pkg-1');
+                const card2 = document.getElementById('card-pkg-2');
+
+                if (pkgId === 1) {
+                    card1.className = "cursor-pointer border-2 border-maroon rounded-xl p-5 transition relative bg-maroon/5 flex flex-col justify-between shadow-sm";
+                    card2.className = "cursor-pointer border-2 border-stone-200 hover:border-maroon rounded-xl p-5 transition relative bg-stone-50/50 flex flex-col justify-between";
+                } else {
+                    card2.className = "cursor-pointer border-2 border-maroon rounded-xl p-5 transition relative bg-maroon/5 flex flex-col justify-between shadow-sm";
+                    card1.className = "cursor-pointer border-2 border-stone-200 hover:border-maroon rounded-xl p-5 transition relative bg-stone-50/50 flex flex-col justify-between";
+                }
+            },
+
+            previewImage(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.uploadedProofBase64 = e.target.result;
+                        document.getElementById('proof-img-tag').src = this.uploadedProofBase64;
+                        document.getElementById('proof-preview-container').classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            },
+
+            removeProof() {
+                this.uploadedProofBase64 = null;
+                document.getElementById('payment-proof').value = '';
+                document.getElementById('proof-preview-container').classList.add('hidden');
+            },
+
+            submitBooking() {
+                if (!this.uploadedProofBase64) {
+                    this.showToast("Silakan upload bukti pembayaran terlebih dahulu.", "error");
+                    return;
+                }
+
+                const paymentType = document.getElementById('payment-type').value;
+                const adminTarget = document.querySelector('input[name="admin_target"]:checked').value;
+                const pkg = this.packages[this.selectedPkg];
+
+                const bookingRecord = {
+                    id: 'STAI-' + Date.now().toString().slice(-6),
+                    name: this.currentUser.name,
+                    whatsapp: this.currentUser.whatsapp,
+                    packageId: this.selectedPkg,
+                    packageName: pkg.name,
+                    price: pkg.price,
+                    paymentType: paymentType,
+                    date: new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' })
+                };
+
+                const adminPhone = adminTarget === 'putra' ? '628561000965' : '6283893288223';
+                const adminName = adminTarget === 'putra' ? 'Admin Putra (+62 856-1000-965)' : 'Admin Putri (+62 838-9328-8223)';
                 
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Pilih Paket Foto</label>
-                    <select id="selectPackage" onchange="updateTotalAmount()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 transition">
-                        <option value="Paket Graduation 1" data-price="95000">Paket Graduation 1 - Rp 95.000 (5 Menit, 5 Edit, 1 A4)</option>
-                        <option value="Paket Graduation 2" data-price="155000">Paket Graduation 2 - Rp 155.000 (10 Menit, 10 Edit, 2 A4)</option>
-                    </select>
-                </div>
+                const receiptText = `*STRUK PEMESANAN SELF PHOTO STUDIO*\n*WISUDA STAI AL-ANWAR SARANG*\n\n` +
+                    `No. Pesanan: ${bookingRecord.id}\n` +
+                    `Nama: ${bookingRecord.name}\n` +
+                    `WhatsApp: ${bookingRecord.whatsapp}\n` +
+                    `Paket: ${bookingRecord.packageName} (Rp${pkg.price.toLocaleString('id-ID')})\n` +
+                    `Jenis Pembayaran: ${bookingRecord.paymentType}\n` +
+                    `Waktu Daftar: ${bookingRecord.date}\n\n` +
+                    `_Bukti transfer telah diupload. Mohon konfirmasi nomor antrean resmi dari admin._`;
 
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
-                    <div class="text-xs font-bold text-amber-400">Instruksi Pembayaran Transfer Bank:</div>
-                    <p class="text-xs text-slate-300">Silakan transfer ke Rekening Bank BRI:</p>
-                    <div class="flex items-center justify-between bg-slate-900 p-3 rounded-lg border border-slate-800">
-                        <div>
-                            <div class="text-xs text-slate-400 font-mono">No. Rekening: <strong class="text-white">602601014917506</strong></div>
-                            <div class="text-xs text-slate-300">Atas Nama: <strong class="text-white">RIDWAN FADHIL</strong></div>
-                        </div>
-                        <button type="button" onclick="copyRekening()" class="bg-slate-800 hover:bg-slate-700 text-amber-400 text-xs px-3 py-1.5 rounded-lg transition font-medium">Salin</button>
-                    </div>
-                    <div class="text-xs text-slate-400 pt-1">Total yang harus dibayar: <strong id="totalAmountDisplay" class="text-white text-sm">Rp 95.000</strong></div>
-                </div>
+                document.getElementById('receipt-content').innerHTML = `
+                    <p class="font-bold text-maroon">ID: ${bookingRecord.id}</p>
+                    <p>Nama: ${bookingRecord.name}</p>
+                    <p>Paket: ${bookingRecord.packageName}</p>
+                    <p>Pembayaran: ${bookingRecord.paymentType}</p>
+                    <p class="text-[10px] text-stone-500 mt-1">Tujuan: ${adminName}</p>
+                `;
 
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Jenis Pembayaran</label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <label class="flex items-center space-x-2 bg-slate-950 border border-slate-800 p-3 rounded-xl cursor-pointer hover:border-amber-500">
-                            <input type="radio" name="paymentType" value="DP" checked class="text-amber-500 focus:ring-amber-500">
-                            <span class="text-xs text-slate-200 font-medium">DP (Down Payment)</span>
-                        </label>
-                        <label class="flex items-center space-x-2 bg-slate-950 border border-slate-800 p-3 rounded-xl cursor-pointer hover:border-amber-500">
-                            <input type="radio" name="paymentType" value="Lunas" class="text-amber-500 focus:ring-amber-500">
-                            <span class="text-xs text-slate-200 font-medium">Lunas</span>
-                        </label>
-                    </div>
-                </div>
+                const encodedMessage = encodeURIComponent(receiptText);
+                document.getElementById('whatsapp-send-btn').href = `https://wa.me/${adminPhone}?text=${encodedMessage}`;
 
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Unggah Bukti Pembayaran (Foto/Struk)</label>
-                    <input type="file" id="paymentProofFile" accept="image/*" required onchange="previewImage(event)" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-600 transition">
-                    <div id="imagePreviewContainer" class="mt-3 hidden">
-                        <img id="imagePreview" class="max-h-32 rounded-lg border border-slate-800 mx-auto object-contain" alt="Preview Bukti">
-                    </div>
-                </div>
+                document.getElementById('modal-receipt').classList.remove('hidden');
+                this.showToast("Pemesanan berhasil direkam!");
+            },
 
-                <div class="pt-2">
-                    <label class="block text-xs font-semibold text-slate-300 mb-2">Pilih Tujuan Konfirmasi WhatsApp Admin</label>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <button type="button" onclick="submitToAdmin('putra')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 px-4 rounded-xl text-xs flex items-center justify-center space-x-2 transition shadow-lg">
-                            <i class="fa-brands fa-whatsapp text-base"></i>
-                            <span>Admin Putra (+62 856-1000-965)</span>
-                        </button>
-                        <button type="button" onclick="submitToAdmin('putri')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 px-4 rounded-xl text-xs flex items-center justify-center space-x-2 transition shadow-lg">
-                            <i class="fa-brands fa-whatsapp text-base"></i>
-                            <span>Admin Putri (+62 838-9328-8223)</span>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+            closeReceiptModal() {
+                document.getElementById('modal-receipt').classList.add('hidden');
+                this.removeProof();
+            },
 
-    <!-- MODAL: Admin Login -->
-    <div id="adminLoginModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-sm w-full p-6 sm:p-8 shadow-2xl relative">
-            <div class="text-center space-y-2 mb-6">
-                <div class="w-12 h-12 bg-amber-500/10 rounded-2xl border border-amber-500/20 flex items-center justify-center mx-auto text-amber-400 text-xl font-bold">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white">Login Admin Studio</h3>
-                <p class="text-slate-400 text-xs">Masukkan password admin untuk mengakses dashboard.</p>
-            </div>
+            goHome() {
+                if (this.currentUser) {
+                    this.showDashboard();
+                } else {
+                    this.showGate();
+                }
+            },
 
-            <form onsubmit="verifyAdminPassword(event)" class="space-y-4">
-                <div>
-                    <input type="password" id="adminPasswordInput" required placeholder="Masukkan Password" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 text-center tracking-widest font-mono">
-                </div>
-                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 rounded-xl transition text-sm shadow-lg">
-                    Masuk Dashboard
-                </button>
-                <button type="button" onclick="closeModal('adminLoginModal')" class="w-full text-slate-400 hover:text-white text-xs py-2 transition">
-                    Batal
-                </button>
-            </form>
-        </div>
-    </div>
+            showToast(msg, type = 'success') {
+                const toast = document.getElementById('toast');
+                const toastMsg = document.getElementById('toast-msg');
+                const toastIcon = document.getElementById('toast-icon');
 
-    <!-- MODAL: Admin Dashboard -->
-    <div id="adminDashboardModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex-col p-4 sm:p-8 overflow-y-auto">
-        <div class="max-w-6xl w-full mx-auto bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl my-auto">
-            <div class="flex items-center justify-between pb-6 border-b border-slate-800 mb-6">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-amber-500/10 rounded-xl border border-amber-500/20 flex items-center justify-center text-amber-400">
-                        <i class="fa-solid fa-gauge-high"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Dashboard Admin Studio</h3>
-                        <p class="text-xs text-slate-400">Kelola pemesanan, verifikasi, dan batalkan antrean.</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <button onclick="exportDataJSON()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs px-3.5 py-2 rounded-xl transition font-medium flex items-center space-x-2">
-                        <i class="fa-solid fa-download"></i>
-                        <span>Export Data</span>
-                    </button>
-                    <button onclick="closeModal('adminDashboardModal')" class="bg-slate-800 hover:bg-white hover:text-slate-950 text-slate-300 w-9 h-9 rounded-xl transition flex items-center justify-center font-bold">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-            </div>
+                toastMsg.innerText = msg;
+                if (type === 'error') {
+                    toastIcon.className = "fa-solid fa-triangle-exclamation text-red-400 text-base";
+                } else {
+                    toastIcon.className = "fa-solid fa-circle-check text-emerald-400 text-base";
+                }
 
-            <!-- Stats Overview -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
-                    <div class="text-xs text-slate-400">Total Pemesan</div>
-                    <div id="adminStatTotal" class="text-2xl font-extrabold text-white mt-1">0</div>
-                </div>
-                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
-                    <div class="text-xs text-slate-400">Antrean Terisi</div>
-                    <div id="adminStatTaken" class="text-2xl font-extrabold text-amber-400 mt-1">0 / 50</div>
-                </div>
-                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
-                    <div class="text-xs text-slate-400">Estimasi Pendapatan</div>
-                    <div id="adminStatRevenue" class="text-2xl font-extrabold text-emerald-400 mt-1">Rp 0</div>
-                </div>
-            </div>
-
-            <!-- Table of Bookings -->
-            <div class="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-950">
-                <table class="w-full text-left text-xs sm:text-sm">
-                    <thead class="bg-slate-900 text-slate-400 uppercase tracking-wider border-b border-slate-800">
-                        <tr>
-                            <th class="p-3 sm:p-4">Antrean</th>
-                            <th class="p-3 sm:p-4">Nama & WhatsApp</th>
-                            <th class="p-3 sm:p-4">Paket</th>
-                            <th class="p-3 sm:p-4">Pembayaran</th>
-                            <th class="p-3 sm:p-4">Bukti</th>
-                            <th class="p-3 sm:p-4 text-right">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminBookingsTableBody" class="divide-y divide-slate-800 text-slate-300">
-                        <!-- Populated via JS -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL: Custom Message Box (No alert()) -->
-    <div id="customModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl">
-            <div id="customModalIcon" class="w-12 h-12 bg-amber-500/10 rounded-2xl border border-amber-500/20 flex items-center justify-center mx-auto text-amber-400 text-xl font-bold">
-                <i class="fa-solid fa-circle-info"></i>
-            </div>
-            <h3 id="customModalTitle" class="text-lg font-bold text-white">Informasi</h3>
-            <p id="customModalText" class="text-xs sm:text-sm text-slate-300 leading-relaxed"></p>
-            <button onclick="closeCustomModal()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-xl transition text-xs">
-                Mengerti
-            </button>
-        </div>
-    </div>
-
-    <!-- Firebase & Application Logic -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, doc, setDoc, getDocs, deleteDoc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Global variables provided by environment
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'stai-photo-studio-app';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-            apiKey: "AIzaSyDummyKeyForPreview",
-            authDomain: "dummy.firebaseapp.com",
-            projectId: "dummy-project",
-            storageBucket: "dummy.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123:web:abc"
+                toast.classList.remove('translate-y-20', 'opacity-0');
+                setTimeout(() => {
+                    toast.classList.add('translate-y-20', 'opacity-0');
+                }, 3500);
+            }
         };
 
-        let app, db, auth, currentUser = null;
-        let bookingsMap = {}; // queueNumber -> bookingData
-        let currentSelectedQueue = null;
-        let uploadedBase64Proof = "";
-
-        window.addEventListener('DOMContentLoaded', async () => {
-            try {
-                app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-
-                currentUser = auth.currentUser;
-                
-                // Initialize listener for bookings
-                initBookingsListener();
-            } catch (e) {
-                console.error("Firebase init error:", e);
-                // Fallback local storage simulation if firebase fails
-                initLocalFallback();
-            }
-
-            checkExistingUser();
-            renderQueueGrid();
-        });
-
-        function initBookingsListener() {
-            if (!currentUser && auth) currentUser = auth.currentUser;
-            if (!currentUser) return;
-
-            const bookingsCol = collection(db, 'artifacts', appId, 'public', 'data', 'bookings');
-            onSnapshot(bookingsCol, (snapshot) => {
-                bookingsMap = {};
-                snapshot.forEach(docSnap => {
-                    const data = docSnap.data();
-                    bookingsMap[data.queueNumber] = { id: docSnap.id, ...data };
-                });
-                renderQueueGrid();
-                updateStats();
-                if (!document.getElementById('adminDashboardModal').classList.contains('hidden')) {
-                    renderAdminTable();
-                }
-            }, (error) => {
-                console.error("Firestore snapshot error:", error);
-            });
-        }
-
-        function initLocalFallback() {
-            const saved = localStorage.getItem('stai_photo_bookings');
-            if (saved) {
-                try { bookingsMap = JSON.parse(saved); } catch(e) {}
-            }
-            renderQueueGrid();
-            updateStats();
-        }
-
-        function saveLocalFallback() {
-            localStorage.setItem('stai_photo_bookings', JSON.stringify(bookingsMap));
-        }
-
-        // User Identity Management
-        function checkExistingUser() {
-            const savedUser = localStorage.getItem('stai_photo_user');
-            if (savedUser) {
-                try {
-                    const userObj = JSON.parse(savedUser);
-                    document.getElementById('userNameDisplay').textContent = userObj.name;
-                    document.getElementById('userBadge').classList.remove('hidden');
-                    document.getElementById('userBadge').classList.add('flex');
-                } catch(e) {}
-            }
-        }
-
-        window.checkIdentityAndScroll = function() {
-            const savedUser = localStorage.getItem('stai_photo_user');
-            if (!savedUser) {
-                document.getElementById('identityModal').classList.remove('hidden');
-                document.getElementById('identityModal').classList.add('flex');
-            } else {
-                const el = document.getElementById('queueSection');
-                el.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        window.saveIdentity = function(e) {
-            e.preventDefault();
-            const name = document.getElementById('inputFullName').value.trim();
-            const whatsapp = document.getElementById('inputWhatsApp').value.trim();
-            if (!name || !whatsapp) return;
-
-            const userObj = { name, whatsapp };
-            localStorage.setItem('stai_photo_user', JSON.stringify(userObj));
-            
-            document.getElementById('userNameDisplay').textContent = name;
-            document.getElementById('userBadge').classList.remove('hidden');
-            document.getElementById('userBadge').classList.add('flex');
-            
-            document.getElementById('identityModal').classList.remove('hidden'); // keep or hide
-            document.getElementById('identityModal').classList.remove('flex');
-            document.getElementById('identityModal').classList.add('hidden');
-
-            showCustomModal("Identitas Tersimpan", "Halo " + name + ", silakan pilih nomor antrean yang masih kosong di bawah.");
-            const el = document.getElementById('queueSection');
-            el.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        window.logoutUser = function() {
-            localStorage.removeItem('stai_photo_user');
-            document.getElementById('userBadge').classList.remove('flex');
-            document.getElementById('userBadge').classList.add('hidden');
-            showCustomModal("Keluar", "Sesi identitas Anda telah dihapus.");
-        }
-
-        // Queue Grid Rendering (1 - 50)
-        function renderQueueGrid() {
-            const grid = document.getElementById('queueGrid');
-            if (!grid) return;
-            grid.innerHTML = '';
-
-            let availableCount = 0;
-            let takenCount = 0;
-
-            for (let i = 1; i <= 50; i++) {
-                const isTaken = bookingsMap[i] !== undefined;
-                if (isTaken) takenCount++; else availableCount++;
-
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                
-                if (isTaken) {
-                    btn.className = "bg-red-950/60 border border-red-800/60 text-red-400 rounded-xl p-3 flex flex-col items-center justify-center cursor-not-allowed opacity-80 transition";
-                    btn.innerHTML = `
-                        <span class="text-xs font-mono font-bold">#${i}</span>
-                        <span class="text-[10px] uppercase font-semibold mt-1">Terisi</span>
-                    `;
-                    btn.disabled = true;
-                } else {
-                    btn.className = "bg-slate-950 hover:bg-amber-500 hover:text-slate-950 border border-slate-800 hover:border-amber-400 text-slate-200 rounded-xl p-3 flex flex-col items-center justify-center transition duration-200 shadow-sm group";
-                    btn.innerHTML = `
-                        <span class="text-xs font-mono font-bold group-hover:text-slate-950">#${i}</span>
-                        <span class="text-[10px] text-emerald-400 group-hover:text-slate-950 font-semibold mt-1">Tersedia</span>
-                    `;
-                    btn.onclick = () => openBookingModal(i);
-                }
-                grid.appendChild(btn);
-            }
-
-            document.getElementById('countAvailable').textContent = availableCount;
-            document.getElementById('countTaken').textContent = takenCount;
-        }
-
-        function updateStats() {
-            let takenCount = Object.keys(bookingsMap).length;
-            document.getElementById('countTaken').textContent = takenCount;
-            document.getElementById('countAvailable').textContent = 50 - takenCount;
-        }
-
-        window.selectPackageAndBook = function(pkgName, price) {
-            const savedUser = localStorage.getItem('stai_photo_user');
-            if (!savedUser) {
-                document.getElementById('identityModal').classList.remove('hidden');
-                document.getElementById('identityModal').classList.add('flex');
-                return;
-            }
-            // Find first available queue
-            let firstAvailable = null;
-            for (let i = 1; i <= 50; i++) {
-                if (!bookingsMap[i]) {
-                    firstAvailable = i;
-                    break;
-                }
-            }
-            if (!firstAvailable) {
-                showCustomModal("Antrean Penuh", "Mohon maaf, kuota antrean 50 sudah penuh seluruhnya.");
-                return;
-            }
-            openBookingModal(firstAvailable, pkgName);
-        }
-
-        window.openBookingModal = function(queueNum, defaultPkg = "Paket Graduation 1") {
-            const savedUser = localStorage.getItem('stai_photo_user');
-            if (!savedUser) {
-                document.getElementById('identityModal').classList.remove('hidden');
-                document.getElementById('identityModal').classList.add('flex');
-                return;
-            }
-
-            currentSelectedQueue = queueNum;
-            document.getElementById('modalQueueNum').textContent = "#" + queueNum;
-            document.getElementById('selectedQueueNumber').value = queueNum;
-            
-            const select = document.getElementById('selectPackage');
-            if (defaultPkg) select.value = defaultPkg;
-            
-            updateTotalAmount();
-            
-            // reset file preview
-            document.getElementById('paymentProofFile').value = '';
-            document.getElementById('imagePreviewContainer').classList.add('hidden');
-            uploadedBase64Proof = '';
-
-            document.getElementById('bookingModal').classList.remove('hidden');
-            document.getElementById('bookingModal').classList.add('flex');
-        }
-
-        window.updateTotalAmount = function() {
-            const select = document.getElementById('selectPackage');
-            const selectedOpt = select.options[select.selectedIndex];
-            const price = selectedOpt.getAttribute('data-price');
-            const formatted = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(price);
-            document.getElementById('totalAmountDisplay').textContent = formatted;
-        }
-
-        window.copyRekening = function() {
-            const textToCopy = "602601014917506";
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    showCustomModal("Berhasil Disalin", "Nomor Rekening BRI berhasil disalin ke clipboard.");
-                });
-            } else {
-                const aux = document.createElement("input");
-                aux.setAttribute("value", textToCopy);
-                document.body.appendChild(aux);
-                aux.select();
-                document.execCommand("copy");
-                document.body.removeChild(aux);
-                showCustomModal("Berhasil Disalin", "Nomor Rekening BRI berhasil disalin.");
-            }
-        }
-
-        window.previewImage = function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    uploadedBase64Proof = e.target.result;
-                    const preview = document.getElementById('imagePreview');
-                    preview.src = uploadedBase64Proof;
-                    document.getElementById('imagePreviewContainer').classList.remove('hidden');
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        window.submitToAdmin = async function(adminType) {
-            const savedUser = localStorage.getItem('stai_photo_user');
-            if (!savedUser) return;
-            const userObj = JSON.parse(savedUser);
-
-            const pkgSelect = document.getElementById('selectPackage');
-            const packageName = pkgSelect.value;
-            const price = pkgSelect.options[pkgSelect.selectedIndex].getAttribute('data-price');
-            const paymentType = document.querySelector('input[name="paymentType"]:checked').value;
-            
-            if (!uploadedBase64Proof) {
-                showCustomModal("Bukti Belum Diunggah", "Mohon unggah foto bukti pembayaran terlebih dahulu.");
-                return;
-            }
-
-            const bookingData = {
-                queueNumber: parseInt(currentSelectedQueue),
-                fullName: userObj.name,
-                whatsapp: userObj.whatsapp,
-                package: packageName,
-                price: parseInt(price),
-                paymentType: paymentType,
-                paymentProof: uploadedBase64Proof,
-                createdAt: new Date().toISOString()
-            };
-
-            // Save to Firestore or fallback
-            try {
-                if (db && currentUser) {
-                    const docRef = doc(collection(db, 'artifacts', appId, 'public', 'data', 'bookings'), `queue_${currentSelectedQueue}`);
-                    await setDoc(docRef, bookingData);
-                } else {
-                    bookingsMap[currentSelectedQueue] = bookingData;
-                    saveLocalFallback();
-                    renderQueueGrid();
-                    updateStats();
-                }
-            } catch (err) {
-                console.error("Error saving booking:", err);
-                bookingsMap[currentSelectedQueue] = bookingData;
-                saveLocalFallback();
-                renderQueueGrid();
-                updateStats();
-            }
-
-            // Construct WhatsApp message
-            const adminPhone = adminType === 'putra' ? '628561000965' : '6283893288223';
-            const adminName = adminType === 'putra' ? 'Admin Putra' : 'Admin Putri';
-
-            const message = `Halo ${adminName}, saya ingin konfirmasi booking Self Photo Studio Wisuda STAI Al-Anwar Sarang:%0A` +
-                            `- Nama: *${userObj.name}*%0A` +
-                            `- No WA: *${userObj.whatsapp}*%0A` +
-                            `- Nomor Antrean: *#${currentSelectedQueue}*%0A` +
-                            `- Paket: *${packageName}*%0A` +
-                            `- Pembayaran: *${paymentType}* (Rp ${parseInt(price).toLocaleString('id-ID')})%0A%0A` +
-                            `Bukti pembayaran telah saya unggah di website. Mohon bantuannya untuk diverifikasi. Terima kasih!`;
-
-            document.getElementById('bookingModal').classList.remove('flex');
-            document.getElementById('bookingModal').classList.add('hidden');
-
-            window.open(`https://wa.me/${adminPhone}?text=${message}`, '_blank');
-            showCustomModal("Pemesanan Berhasil!", `Antrean #${currentSelectedQueue} telah berhasil dicatat dan dikunci. Silakan selesaikan pengiriman chat WhatsApp ke ${adminName}.`);
-        }
-
-        // Admin Access & Dashboard
-        window.openAdminLoginModal = function() {
-            document.getElementById('adminPasswordInput').value = '';
-            document.getElementById('adminLoginModal').classList.remove('hidden');
-            document.getElementById('adminLoginModal').classList.add('flex');
-        }
-
-        window.verifyAdminPassword = function(e) {
-            e.preventDefault();
-            const pass = document.getElementById('adminPasswordInput').value;
-            if (pass === "291199") {
-                document.getElementById('adminLoginModal').classList.remove('flex');
-                document.getElementById('adminLoginModal').classList.add('hidden');
-                
-                document.getElementById('adminDashboardModal').classList.remove('hidden');
-                document.getElementById('adminDashboardModal').classList.add('flex');
-                renderAdminTable();
-            } else {
-                showCustomModal("Password Salah", "Password admin yang Anda masukkan tidak valid.");
-            }
-        }
-
-        function renderAdminTable() {
-            const tbody = document.getElementById('adminBookingsTableBody');
-            if (!tbody) return;
-            tbody.innerHTML = '';
-
-            const keys = Object.keys(bookingsMap).map(Number).sort((a,b) => a - b);
-            
-            let totalRev = 0;
-            keys.forEach(qNum => {
-                const item = bookingsMap[qNum];
-                totalRev += (item.price || 0);
-
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-900/50 transition";
-                tr.innerHTML = `
-                    <td class="p-3 sm:p-4 font-mono font-bold text-amber-400">#${item.queueNumber}</td>
-                    <td class="p-3 sm:p-4">
-                        <div class="font-semibold text-white">${item.fullName}</div>
-                        <div class="text-xs text-slate-400 font-mono">${item.whatsapp}</div>
-                    </td>
-                    <td class="p-3 sm:p-4 text-slate-300">${item.package}</td>
-                    <td class="p-3 sm:p-4">
-                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold ${item.paymentType === 'Lunas' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'}">
-                            ${item.paymentType}
-                        </span>
-                        <div class="text-xs text-slate-400 mt-1">Rp ${(item.price || 0).toLocaleString('id-ID')}</div>
-                    </td>
-                    <td class="p-3 sm:p-4">
-                        ${item.paymentProof ? `<button onclick="viewProof('${encodeURIComponent(item.paymentProof)}')" class="text-amber-400 hover:underline text-xs flex items-center space-x-1"><i class="fa-solid fa-image"></i><span>Lihat Foto</span></button>` : '<span class="text-slate-500">Tidak ada</span>'}
-                    </td>
-                    <td class="p-3 sm:p-4 text-right">
-                        <button onclick="cancelBooking(${item.queueNumber})" class="bg-red-500/10 hover:bg-red-500 hover:text-white text-red-400 border border-red-500/20 px-3 py-1.5 rounded-xl text-xs font-semibold transition">
-                            Batalkan
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-
-            document.getElementById('adminStatTotal').textContent = keys.length;
-            document.getElementById('adminStatTaken').textContent = keys.length + " / 50";
-            document.getElementById('adminStatRevenue').textContent = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(totalRev);
-        }
-
-        window.viewProof = function(encodedImg) {
-            const imgUrl = decodeURIComponent(encodedImg);
-            const w = window.open("");
-            w.document.write(`<title>Bukti Pembayaran</title><body style="margin:0;background:#020617;display:flex;align-items:center;justify-content:center;height:100vh;"><img src="${imgUrl}" style="max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,0.5);" /></body>`);
-        }
-
-        window.cancelBooking = async function(queueNum) {
-            if (!confirm("Apakah Anda yakin ingin membatalkan pesanan antrean #" + queueNum + "? Nomor antrean akan kembali kosong.")) {
-                // custom confirm simulation or native confirm
-            }
-            
-            const booking = bookingsMap[queueNum];
-            if (!booking) return;
-
-            try {
-                if (db && currentUser && booking.id) {
-                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'bookings', booking.id);
-                    await deleteDoc(docRef);
-                }
-                // also try doc by name
-                const docRef2 = doc(db, 'artifacts', appId, 'public', 'data', 'bookings', `queue_${queueNum}`);
-                await deleteDoc(docRef2);
-            } catch(e) {
-                console.error("Delete doc error:", e);
-            }
-
-            delete bookingsMap[queueNum];
-            saveLocalFallback();
-            renderQueueGrid();
-            updateStats();
-            renderAdminTable();
-            showCustomModal("Pesanan Dibatalkan", "Nomor antrean #" + queueNum + " kini telah kosong kembali.");
-        }
-
-        window.exportDataJSON = function() {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(bookingsMap, null, 2));
-            const dlAnchorElem = document.createElement('a');
-            dlAnchorElem.setAttribute("href", dataStr);
-            dlAnchorElem.setAttribute("download", "data_booking_stai_photo.json");
-            dlAnchorElem.click();
-        }
-
-        // Modal Helpers
-        window.closeModal = function(modalId) {
-            document.getElementById(modalId).classList.remove('flex');
-            document.getElementById(modalId).classList.add('hidden');
-        }
-
-        window.showCustomModal = function(title, text) {
-            document.getElementById('customModalTitle').textContent = title;
-            document.getElementById('customModalText').textContent = text;
-            document.getElementById('customModal.hidden')
-            document.getElementById('customModal').classList.remove('hidden');
-            document.getElementById('customModal').classList.add('flex');
-        }
-
-        window.closeCustomModal = function() {
-            document.getElementById('customModal').classList.remove('flex');
-            document.getElementById('customModal').classList.add('hidden');
-        }
+        window.onload = function() {
+            app.init();
+        };
     </script>
 </body>
 </html>
