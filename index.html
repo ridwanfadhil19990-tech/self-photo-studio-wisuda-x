@@ -6,712 +6,706 @@
     <title>Self Photo Studio Wisuda STAI Al-Anwar Sarang</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif'],
-                    },
                     colors: {
                         maroon: {
-                            600: '#5C1D24',
-                            700: '#48141B',
-                            800: '#340F13',
-                            900: '#200A0C',
+                            50: '#fdf2f2',
+                            100: '#fbe8e8',
+                            600: '#991b1b',
+                            700: '#7a1c1c',
+                            800: '#631717',
+                            900: '#521414',
+                        },
+                        gold: {
+                            500: '#c5a059',
+                            600: '#b08d46',
+                            700: '#917132',
                         },
                         cream: {
-                            50: '#FDFBF7',
-                            100: '#F9F4EC',
-                            200: '#F0E6D8',
-                            300: '#E4D3BC',
+                            50: '#fcfbfa',
+                            100: '#f7f4f0',
+                            200: '#eee8de',
                         }
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #FDFBF7;
-            color: #2D2D2D;
+            background-color: #f7f4f0;
+            color: #2b2b2b;
         }
-        .bg-maroon-custom { background-color: #5C1D24; }
-        .text-maroon-custom { color: #5C1D24; }
-        .border-maroon-custom { border-color: #5C1D24; }
-        .hover\:bg-maroon-custom:hover { background-color: #48141B; }
-        
-        /* Custom animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 160, 89, 0.2);
         }
-        .animate-fade-in {
-            animation: fadeIn 0.4s ease-out forwards;
+        .hero-gradient {
+            background: linear-gradient(135deg, #7a1c1c 0%, #521414 100%);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f7f4f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5a059;
+            border-radius: 4px;
         }
     </style>
 </head>
-<body class="bg-cream-50 min-h-screen flex flex-col selection:bg-maroon-600 selection:text-white">
+<body class="min-h-screen flex flex-col antialiased selection:bg-gold-500 selection:text-white">
 
-    <!-- Notification Toast Modal (Replacement for alert) -->
-    <div id="toast" class="fixed top-5 right-5 z-50 transform translate-x-full opacity-0 transition-all duration-300 max-w-sm bg-white border-l-4 border-maroon-600 shadow-xl rounded-r-xl p-4 flex items-start space-x-3">
-        <div id="toast-icon" class="text-maroon-600 text-xl mt-0.5">
-            <i class="fa-solid fa-circle-info"></i>
+    <!-- Notification Toast Modal -->
+    <div id="toast" class="fixed top-5 right-5 z-50 transform translate-x-full opacity-0 transition-all duration-300 max-w-sm bg-white border-l-4 border-gold-500 shadow-xl rounded-lg p-4 flex items-center space-x-3">
+        <div id="toastIcon" class="text-gold-600 text-xl"><i class="fa-solid fa-circle-check"></i></div>
+        <div>
+            <h4 id="toastTitle" class="font-semibold text-sm text-gray-900">Notifikasi</h4>
+            <p id="toastMessage" class="text-xs text-gray-600">Pesan berhasil dikirim.</p>
         </div>
-        <div class="flex-1">
-            <h4 id="toast-title" class="font-semibold text-gray-900 text-sm">Informasi</h4>
-            <p id="toast-message" class="text-gray-600 text-xs mt-0.5">Pesan sistem...</p>
-        </div>
-        <button onclick="hideToast()" class="text-gray-400 hover:text-gray-600 text-sm">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
     </div>
 
-    <!-- GATEKEEPER MODAL / OVERLAY -->
-    <div id="gatekeeper-modal" class="fixed inset-0 z-40 bg-maroon-900/80 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-300">
-        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 md:p-8 border border-cream-200 animate-fade-in relative overflow-hidden">
-            <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-maroon-600 to-amber-600"></div>
-            
-            <div class="text-center mb-6">
-                <div class="w-16 h-16 bg-cream-100 rounded-full flex items-center justify-center mx-auto mb-3 text-maroon-600 text-2xl shadow-inner">
+    <!-- HEADER / NAVBAR -->
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-40 border-b border-cream-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-maroon-700 text-gold-500 flex items-center justify-center font-bold text-lg shadow-md">
                     <i class="fa-solid fa-camera-retro"></i>
                 </div>
-                <span class="text-xs uppercase tracking-widest font-semibold text-amber-700 bg-amber-50 px-3 py-1 rounded-full">Self Photo Studio</span>
-                <h2 class="text-2xl font-bold text-maroon-900 mt-2">Wisuda STAI Al-Anwar Sarang</h2>
-                <p class="text-gray-500 text-xs mt-1">Silakan masukkan data Anda untuk memulai pemesanan dan melihat katalog eksklusif.</p>
-            </div>
-
-            <form id="gatekeeper-form" onsubmit="handleGatekeeperSubmit(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Lengkap Pemesan <span class="text-red-500">*</span></label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                            <i class="fa-solid fa-user"></i>
-                        </span>
-                        <input type="text" id="user-name" required placeholder="Contoh: Ahmad Fulan" 
-                            class="w-full pl-10 pr-4 py-3 bg-cream-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-maroon-600 focus:bg-white transition">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Nomor WhatsApp Aktif <span class="text-red-500">*</span></label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                            <i class="fa-solid fa-phone"></i>
-                        </span>
-                        <input type="tel" id="user-phone" required placeholder="Contoh: 081234567890" 
-                            class="w-full pl-10 pr-4 py-3 bg-cream-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-maroon-600 focus:bg-white transition">
-                    </div>
-                    <p class="text-[11px] text-gray-400 mt-1">Digunakan untuk pengiriman struk & konfirmasi antrean oleh admin.</p>
-                </div>
-
-                <button type="submit" class="w-full bg-maroon-600 hover:bg-maroon-700 text-white font-semibold py-3.5 px-6 rounded-xl shadow-lg shadow-maroon-600/30 transition duration-200 flex items-center justify-center space-x-2 text-sm">
-                    <span>Masuk ke Katalog & Booking</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- MAIN HEADER -->
-    <header class="bg-white border-b border-cream-200 sticky top-0 z-30 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-maroon-600 text-white flex items-center justify-center shadow-md">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-                <div>
-                    <h1 class="text-sm md:text-base font-bold text-maroon-900 leading-tight">Self Photo Studio</h1>
-                    <p class="text-[11px] text-gray-500">Wisuda STAI Al-Anwar Sarang</p>
+                    <h1 class="font-bold text-sm sm:text-base text-maroon-800 leading-tight">Self Photo Studio</h1>
+                    <p class="text-xs text-gold-600 font-medium">Wisuda STAI Al-Anwar Sarang</p>
                 </div>
             </div>
-
-            <div id="user-badge" class="hidden items-center space-x-3 bg-cream-100 px-3 py-1.5 rounded-full border border-cream-200">
-                <div class="text-xs">
-                    <p class="text-gray-500 text-[10px] leading-none">Pemesan:</p>
-                    <p id="badge-name" class="font-semibold text-maroon-900 truncate max-w-[120px] md:max-w-[180px]"></p>
-                </div>
-                <button onclick="editUserData()" class="text-xs text-maroon-600 hover:text-maroon-800 font-medium underline">
-                    Ganti
-                </button>
+            <div id="userBadge" class="hidden items-center space-x-2 bg-cream-100 border border-gold-500/30 px-3 py-1.5 rounded-full text-xs">
+                <i class="fa-solid fa-user-check text-gold-600"></i>
+                <span id="badgeName" class="font-semibold text-gray-800">Pemesan</span>
+                <button onclick="resetGatekeeper()" class="text-maroon-700 hover:text-maroon-900 ml-2 font-medium underline text-[10px]">Ganti</button>
             </div>
         </div>
     </header>
 
-    <!-- CONTENT WRAPPER (Disabled until gatekeeper submitted) -->
-    <main id="main-content" class="flex-1 max-w-6xl w-full mx-auto px-4 py-6 md:py-10 space-y-12 filter blur-sm pointer-events-none transition duration-500">
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow max-w-4xl w-full mx-auto p-4 sm:p-6 my-4">
 
-        <!-- HERO SECTION -->
-        <section class="relative bg-gradient-to-br from-maroon-900 via-maroon-800 to-maroon-700 rounded-3xl overflow-hidden shadow-2xl text-white p-6 md:p-12">
-            <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-            <div class="relative z-10 max-w-2xl">
-                <span class="inline-block bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-semibold px-3 py-1 rounded-full mb-4">
-                    <i class="fa-solid fa-sparkles mr-1"></i> Open Slot Wisuda
-                </span>
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
-                    Abadikan Momen Bahagiamu dengan Gaya Elegan & Estetik
-                </h2>
-                <p class="mt-4 text-cream-200 text-sm md:text-base leading-relaxed">
-                    Nikmati pengalaman foto studio mandiri (Self Photo Studio) khusus wisuda STAI Al-Anwar Sarang. Bebas berpose sesuka hati dengan peralatan profesional!
-                </p>
-                <div class="mt-6 flex flex-wrap gap-4">
-                    <a href="#packages" class="bg-white text-maroon-900 hover:bg-cream-100 font-semibold px-6 py-3 rounded-xl shadow-lg transition text-sm flex items-center space-x-2">
-                        <i class="fa-solid fa-list-check"></i>
-                        <span>Lihat Pilihan Paket</span>
-                    </a>
-                    <a href="#facility" class="bg-maroon-800/80 hover:bg-maroon-800 text-cream-100 border border-cream-200/20 font-medium px-6 py-3 rounded-xl transition text-sm flex items-center space-x-2">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Lokasi & Fasilitas</span>
-                    </a>
+        <!-- ================= VIEW 1: GATEKEEPER FORM ================= -->
+        <section id="gatekeeperSection" class="transition-all duration-500">
+            <div class="hero-gradient text-white rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden mb-6">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl">
+                    <i class="fa-solid fa-graduation-cap"></i>
                 </div>
-            </div>
-        </section>
-
-        <!-- STUDIO FACILITY & HIGHLIGHTS -->
-        <section id="facility" class="space-y-6">
-            <div class="text-center max-w-xl mx-auto">
-                <h3 class="text-2xl font-bold text-maroon-900">Fasilitas & Properti Studio</h3>
-                <p class="text-gray-500 text-xs md:text-sm mt-1">Kami menyediakan perlengkapan studio standar profesional untuk hasil foto terbaik.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-cream-100 text-maroon-600 rounded-xl flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-camera"></i>
-                    </div>
-                    <h4 class="font-bold text-gray-900 text-sm">Kamera Sony A7 Mark III</h4>
-                    <p class="text-gray-500 text-xs mt-1">Sensor full-frame tajam dengan warna akurat untuk kualitas foto premium.</p>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-cream-100 text-maroon-600 rounded-xl flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-bolt"></i>
-                    </div>
-                    <h4 class="font-bold text-gray-900 text-sm">Dual External Flash</h4>
-                    <p class="text-gray-500 text-xs mt-1">Pencahayaan studio ganda membuat wajah dan atribut toga tampak sempurna.</p>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-cream-100 text-maroon-600 rounded-xl flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-people-group"></i>
-                    </div>
-                    <h4 class="font-bold text-gray-900 text-sm">Kapasitas 15 Orang</h4>
-                    <p class="text-gray-500 text-xs mt-1">Ruangan luas, cocok untuk foto bersama keluarga, sahabat, maupun angkatan.</p>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-cream-100 text-maroon-600 rounded-xl flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-building"></i>
-                    </div>
-                    <h4 class="font-bold text-gray-900 text-sm">Lokasi Strategis</h4>
-                    <p class="text-gray-500 text-xs mt-1">Gedung MZ Lantai 2, mudah dijangkau di area kampus STAI Al-Anwar Sarang.</p>
-                </div>
-            </div>
-
-            <!-- Properti Tambahan Badge List -->
-            <div class="bg-white p-6 rounded-2xl border border-cream-200 shadow-sm">
-                <h4 class="font-bold text-gray-900 text-sm mb-3 flex items-center">
-                    <i class="fa-solid fa-wand-magic-sparkles text-amber-600 mr-2"></i> Properti Pendukung Lengkap:
-                </h4>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-cream-100 text-maroon-900 text-xs px-3 py-1.5 rounded-lg font-medium">Atribut Topi Toga (Hijau & Biru)</span>
-                    <span class="bg-cream-100 text-maroon-900 text-xs px-3 py-1.5 rounded-lg font-medium">Remote Control Foto Mandiri</span>
-                    <span class="bg-cream-100 text-maroon-900 text-xs px-3 py-1.5 rounded-lg font-medium">Arahan Gaya (Pose) dari Tim</span>
-                    <span class="bg-cream-100 text-maroon-900 text-xs px-3 py-1.5 rounded-lg font-medium">Atribut Stiker & Kacamata Hitam</span>
-                    <span class="bg-cream-100 text-maroon-900 text-xs px-3 py-1.5 rounded-lg font-medium">Kursi Keluarga</span>
-                    <span class="bg-cream-100 text-maroon-900 text-xs px-3 py-1.5 rounded-lg font-medium">Background Abu-abu Abstrak</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- PACKAGES SECTION -->
-        <section id="packages" class="space-y-6">
-            <div class="text-center max-w-xl mx-auto">
-                <h3 class="text-2xl font-bold text-maroon-900">Pilihan Paket Foto Wisuda</h3>
-                <p class="text-gray-500 text-xs md:text-sm mt-1">Pilih paket yang paling sesuai dengan kebutuhan dokumentasi wisudamu.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <!-- Paket 1 -->
-                <div class="bg-white rounded-3xl border-2 border-cream-200 p-6 md:p-8 shadow-sm flex flex-col justify-between relative overflow-hidden group hover:border-maroon-600 transition">
-                    <div class="absolute top-0 right-0 bg-cream-200 text-maroon-900 text-[10px] font-bold px-4 py-1.5 rounded-bl-2xl uppercase tracking-wider">
-                        Favorit Simple
-                    </div>
-                    <div>
-                        <div class="inline-block bg-maroon-600 text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">
-                            Paket Graduation 1
-                        </div>
-                        <div class="flex items-baseline space-x-2 my-2">
-                            <span class="text-gray-400 line-through text-sm">Rp 115.000</span>
-                            <span class="text-3xl md:text-4xl font-extrabold text-maroon-900">Rp 95.000</span>
-                        </div>
-                        <p class="text-gray-500 text-xs mb-6">Cocok untuk sesi kilat dan padat acara wisuda.</p>
-
-                        <ul class="space-y-3 text-xs md:text-sm text-gray-700 mb-8">
-                            <li class="flex items-center space-x-3">
-                                <i class="fa-solid fa-circle-check text-maroon-600"></i>
-                                <span>Durasi sesi pemotretan <strong>5 menit</strong></span>
-                            </li>
-                            <li class="flex items-center space-x-3">
-                                <i class="fa-solid fa-circle-check text-maroon-600"></i>
-                                <span>Akses <strong>file mentah full</strong> via Google Drive</span>
-                            </li>
-                            <li class="flex items-center space-x-3">
-                                <i class="fa-solid fa-circle-check text-maroon-600"></i>
-                                <span><strong>5 foto pilihan</strong> dengan proses editing (color/retouch)</span>
-                            </li>
-                            <li class="flex items-center space-x-3">
-                                <i class="fa-solid fa-circle-check text-maroon-600"></i>
-                                <span>Cetak fisik <strong>1 lembar</strong> ukuran A4 full</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <button onclick="selectPackage(1, 'Paket Graduation 1', 95000)" class="w-full bg-maroon-600 hover:bg-maroon-700 text-white font-semibold py-3.5 rounded-xl shadow-md transition text-sm flex items-center justify-center space-x-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span>Pilih Paket Ini</span>
-                    </button>
-                </div>
-
-                <!-- Paket 2 -->
-                <div class="bg-white rounded-3xl border-2 border-maroon-600 p-6 md:p-8 shadow-xl flex flex-col justify-between relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 bg-maroon-600 text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-2xl uppercase tracking-wider">
-                        Paling Hemat & Puas
-                    </div>
-                    <div>
-                        <div class="inline-block bg-maroon-600 text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">
-                            Paket Graduation 2
-                        </div>
-                        <div class="flex items-baseline space-x-2 my-2">
-                            <span class="text-gray-400 line-through text-sm">Rp 230.000</span>
-                            <span class="text-3xl md:text-4xl font-extrabold text-maroon-900">Rp 155.000</span>
-                        </div>
-                        <p class="text-gray-500 text-xs mb-6">Waktu lebih longgar, banyak foto pilihan & cetakan lebih banyak.</p>
-
-                        <ul class="space-y-3 text-xs md:text-sm text-gray-700 mb-8">
-                            <li class="flex items-center space-x-3">
-                                <i class="fa-solid fa-circle-check text-maroon-600"></i>
-                                <span>Durasi sesi pemotretan <strong>10 menit</strong></span>
-                            </li>
-                            <li class="flex items-center space-x-3">
-                                <i class="fa-solid fa-circle-check text-maroon-600"></i>
-                                <span>Akses <strong>file mentah full</strong> via Google Drive</span>
-                            </li>
-                            <li class="flex items-center space-x-3">
-                                <i class="fa-solid fa-circle-check text-maroon-600"></i>
-                                <span><strong>10 foto pilihan</strong> dengan proses editing (color/retouch)</span>
-                            </li>
-                            <li class="flex items-center space-x-3">
-                                <i class="fa-solid fa-circle-check text-maroon-600"></i>
-                                <span>Cetak fisik <strong>2 lembar</strong> ukuran A4 full frame</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <button onclick="selectPackage(2, 'Paket Graduation 2', 155000)" class="w-full bg-maroon-600 hover:bg-maroon-700 text-white font-semibold py-3.5 rounded-xl shadow-md transition text-sm flex items-center justify-center space-x-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span>Pilih Paket Ini</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- BOOKING & PAYMENT FORM SECTION -->
-        <section id="booking-section" class="max-w-3xl mx-auto bg-white rounded-3xl border border-cream-200 shadow-xl p-6 md:p-10 space-y-8">
-            <div class="border-b border-gray-100 pb-5">
-                <span class="text-xs uppercase tracking-wider font-semibold text-amber-700 bg-amber-50 px-3 py-1 rounded-full">Formulir Pemesanan</span>
-                <h3 class="text-2xl font-bold text-maroon-900 mt-2">Konfirmasi & Pembayaran</h3>
-                <p class="text-gray-500 text-xs mt-1">Lengkapi detail pembayaran di bawah ini setelah memilih paket.</p>
-            </div>
-
-            <!-- Selected Package Indicator -->
-            <div id="selected-package-box" class="bg-cream-100 rounded-2xl p-4 border border-cream-200 flex items-center justify-between">
-                <div>
-                    <p class="text-[11px] text-gray-500 uppercase font-semibold">Paket Terpilih:</p>
-                    <h4 id="selected-package-title" class="font-bold text-maroon-900 text-sm md:text-base">Belum ada paket dipilih</h4>
-                </div>
-                <div class="text-right">
-                    <p id="selected-package-price" class="font-extrabold text-maroon-900 text-base md:text-lg">Rp 0</p>
-                    <a href="#packages" class="text-[11px] text-maroon-600 underline font-medium">Ubah Paket</a>
-                </div>
-            </div>
-
-            <!-- Bank Transfer Information Card -->
-            <div class="bg-gradient-to-r from-amber-50 to-cream-100 rounded-2xl p-5 border border-amber-200/60">
-                <div class="flex items-start space-x-3">
-                    <div class="w-10 h-10 bg-amber-600 text-white rounded-xl flex items-center justify-center text-lg flex-shrink-0 mt-0.5 shadow-sm">
-                        <i class="fa-solid fa-building-columns"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-bold text-gray-900 text-sm">Informasi Rekening Pembayaran</h4>
-                        <p class="text-xs text-gray-600 mt-0.5">Silakan transfer melalui Bank BRI ke nomor rekening berikut:</p>
-                        
-                        <div class="mt-3 bg-white p-3 rounded-xl border border-amber-200 flex items-center justify-between">
-                            <div>
-                                <p class="text-[10px] text-gray-400 uppercase font-semibold">Bank BRI & No. Rekening</p>
-                                <p id="acc-number" class="font-mono font-bold text-gray-900 text-base md:text-lg">602601014917506</p>
-                                <p class="text-xs text-gray-600 font-medium">Atas Nama: <span class="text-maroon-900 font-bold">Ridwan Fadhil</span></p>
-                            </div>
-                            <button type="button" onclick="copyAccountNumber()" class="bg-cream-100 hover:bg-cream-200 text-maroon-900 px-3 py-2 rounded-xl text-xs font-semibold transition flex items-center space-x-1.5">
-                                <i class="fa-regular fa-copy"></i>
-                                <span>Salin</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Form Fields -->
-            <div class="space-y-6">
-                <!-- Payment Type -->
-                <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-2">Jenis Pembayaran <span class="text-red-500">*</span></label>
-                    <div class="grid grid-cols-2 gap-4">
-                        <label class="flex items-center space-x-3 p-3.5 rounded-xl border border-gray-200 bg-cream-50 cursor-pointer hover:border-maroon-600 transition">
-                            <input type="radio" name="payment-type" value="DP" checked class="text-maroon-600 focus:ring-maroon-600">
-                            <div>
-                                <span class="block text-xs font-bold text-gray-900">DP (Uang Muka)</span>
-                                <span class="block text-[11px] text-gray-500">Minimal bebas / fleksibel</span>
-                            </div>
-                        </label>
-                        <label class="flex items-center space-x-3 p-3.5 rounded-xl border border-gray-200 bg-cream-50 cursor-pointer hover:border-maroon-600 transition">
-                            <input type="radio" name="payment-type" value="Lunas" class="text-maroon-600 focus:ring-maroon-600">
-                            <div>
-                                <span class="block text-xs font-bold text-gray-900">Lunas</span>
-                                <span class="block text-[11px] text-gray-500">Pembayaran penuh</span>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Proof Upload -->
-                <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Upload Bukti Transfer <span class="text-red-500">*</span></label>
-                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-2xl bg-cream-50 hover:bg-cream-100/50 transition cursor-pointer relative" id="drop-zone">
-                        <div class="space-y-1 text-center" id="upload-placeholder">
-                            <i class="fa-solid fa-cloud-arrow-up text-3xl text-maroon-600 mb-2"></i>
-                            <div class="flex text-xs text-gray-600 justify-center">
-                                <label for="proof-file" class="relative cursor-pointer rounded-md font-medium text-maroon-600 hover:text-maroon-800 underline">
-                                    <span>Pilih file foto bukti</span>
-                                    <input id="proof-file" name="proof-file" type="file" accept="image/*" class="sr-only" onchange="handleFileSelect(event)">
-                                </label>
-                                <p class="pl-1">atau seret ke sini</p>
-                            </div>
-                            <p class="text-[10px] text-gray-400">PNG, JPG, JPEG hingga 10MB</p>
-                        </div>
-                        <div id="preview-container" class="hidden w-full flex flex-col items-center">
-                            <img id="image-preview" src="#" alt="Preview Bukti" class="max-h-48 rounded-xl object-contain shadow-md mb-2">
-                            <button type="button" onclick="removeProofFile()" class="text-xs text-red-600 hover:text-red-800 font-medium bg-white px-3 py-1 rounded-lg border border-red-200 shadow-sm">
-                                <i class="fa-solid fa-trash mr-1"></i> Hapus / Ganti Foto
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Notice Note -->
-                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-xl text-xs text-blue-900">
-                    <p class="font-bold flex items-center">
-                        <i class="fa-solid fa-circle-info mr-1.5 text-blue-600"></i> Catatan Penting:
+                <div class="relative z-10 max-w-xl">
+                    <span class="inline-block bg-gold-500 text-maroon-900 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+                        Open Slot Wisuda 2026
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3">
+                        Self Photo Studio Wisuda STAI Al-Anwar Sarang
+                    </h2>
+                    <p class="text-cream-100 text-sm sm:text-base leading-relaxed mb-6">
+                        Abadikan momen berharga kelulusan Anda bersama keluarga dan sahabat tercinta dengan hasil profesional, estetik, dan berkesan.
                     </p>
-                    <p class="mt-1">Nomor antrean akan dikirimkan langsung oleh admin melalui WhatsApp setelah verifikasi bukti transfer berhasil.</p>
+                    <div class="flex items-center space-x-4 text-xs sm:text-sm text-gold-500 font-medium">
+                        <span><i class="fa-solid fa-location-dot mr-1.5"></i> Gedung MZ Lantai 2</span>
+                        <span><i class="fa-solid fa-camera mr-1.5"></i> Sony A7 III</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-gold-500/20">
+                <div class="text-center mb-6">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-900">Formulir Data Pemesan</h3>
+                    <p class="text-xs sm:text-sm text-gray-500 mt-1">Silakan masukkan nama dan nomor WhatsApp Anda untuk mulai memesan sesi foto.</p>
                 </div>
 
-                <!-- INVOICE PREVIEW GENERATOR -->
-                <div class="bg-cream-100 rounded-2xl p-5 border border-cream-200 space-y-3">
-                    <h4 class="font-bold text-maroon-900 text-xs uppercase tracking-wider flex items-center">
-                        <i class="fa-solid fa-receipt mr-2"></i> Ringkasan Struk / Invoice Otomatis
-                    </h4>
-                    <div id="invoice-preview-text" class="bg-white p-4 rounded-xl font-mono text-xs text-gray-800 whitespace-pre-line border border-cream-200 shadow-inner">
-                        Silakan lengkapi data pemesanan di atas...
+                <form id="gatekeeperForm" onsubmit="handleGatekeeperSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                            <i class="fa-solid fa-user text-maroon-700 mr-1"></i> Nama Lengkap Pemesan
+                        </label>
+                        <input type="text" id="inputName" required placeholder="Contoh: Ahmad Fadhil, S.Pd."
+                            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-maroon-700 focus:border-maroon-700 outline-none text-sm bg-cream-50 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                            <i class="fa-solid fa-phone text-maroon-700 mr-1"></i> Nomor WhatsApp Aktif
+                        </label>
+                        <input type="tel" id="inputPhone" required placeholder="Contoh: 081234567890"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-maroon-700 focus:border-maroon-700 outline-none text-sm bg-cream-50 transition">
+                        <p class="text-[11px] text-gray-400 mt-1">Nomor ini digunakan admin untuk mengirimkan struk & antrean.</p>
+                    </div>
+                    <button type="submit"
+                        class="w-full py-3.5 px-6 rounded-xl hero-gradient text-white font-bold text-sm sm:text-base shadow-lg hover:opacity-95 transition transform active:scale-[0.99] flex items-center justify-center space-x-2">
+                        <span>Lanjut ke Katalog & Pemesanan</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ================= VIEW 2: STUDIO CATALOG & BOOKING FLOW ================= -->
+        <section id="catalogSection" class="hidden space-y-6">
+            
+            <!-- Studio Facilities Card -->
+            <div class="bg-white rounded-3xl p-6 shadow-lg border border-gold-500/20">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="p-2.5 bg-maroon-50 text-maroon-700 rounded-xl">
+                        <i class="fa-solid fa-circle-info text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 text-base">Fasilitas & Informasi Studio</h3>
+                        <p class="text-xs text-gray-500">Spesifikasi dan perlengkapan lengkap siap pakai</p>
                     </div>
                 </div>
 
-                <!-- WHATSAPP ADMIN BUTTONS -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+                    <div class="bg-cream-50 p-3 rounded-xl border border-gray-200 flex items-start space-x-2.5">
+                        <i class="fa-solid fa-camera text-gold-600 mt-0.5 text-sm"></i>
+                        <div>
+                            <span class="font-semibold block text-gray-800">Kamera Sony A7 III</span>
+                            <span class="text-gray-500 text-[11px]">Kualitas foto tajam & profesional</span>
+                        </div>
+                    </div>
+                    <div class="bg-cream-50 p-3 rounded-xl border border-gray-200 flex items-start space-x-2.5">
+                        <i class="fa-solid fa-bolt text-gold-600 mt-0.5 text-sm"></i>
+                        <div>
+                            <span class="font-semibold block text-gray-800">Dual External Flash</span>
+                            <span class="text-gray-500 text-[11px]">Pencahayaan studio maksimal</span>
+                        </div>
+                    </div>
+                    <div class="bg-cream-50 p-3 rounded-xl border border-gray-200 flex items-start space-x-2.5">
+                        <i class="fa-solid fa-sliders text-gold-600 mt-0.5 text-sm"></i>
+                        <div>
+                            <span class="font-semibold block text-gray-800">Remote Control Foto</span>
+                            <span class="text-gray-500 text-[11px]">Bebas berpose mandiri sesuai selera</span>
+                        </div>
+                    </div>
+                    <div class="bg-cream-50 p-3 rounded-xl border border-gray-200 flex items-start space-x-2.5">
+                        <i class="fa-solid fa-graduation-cap text-gold-600 mt-0.5 text-sm"></i>
+                        <div>
+                            <span class="font-semibold block text-gray-800">Atribut Topi Toga</span>
+                            <span class="text-gray-500 text-[11px]">Pilihan warna hijau & biru khas STAI</span>
+                        </div>
+                    </div>
+                    <div class="bg-cream-50 p-3 rounded-xl border border-gray-200 flex items-start space-x-2.5">
+                        <i class="fa-solid fa-users text-gold-600 mt-0.5 text-sm"></i>
+                        <div>
+                            <span class="font-semibold block text-gray-800">Kapasitas 15 Orang</span>
+                            <span class="text-gray-500 text-[11px]">Luas & nyaman untuk keluarga</span>
+                        </div>
+                    </div>
+                    <div class="bg-cream-50 p-3 rounded-xl border border-gray-200 flex items-start space-x-2.5">
+                        <i class="fa-solid fa-building text-gold-600 mt-0.5 text-sm"></i>
+                        <div>
+                            <span class="font-semibold block text-gray-800">Gedung MZ Lantai 2</span>
+                            <span class="text-gray-500 text-[11px]">Lokasi strategis di area kampus</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3 pt-3 border-t border-cream-200 text-xs text-gray-600 flex items-center justify-between">
+                    <span><i class="fa-solid fa-face-smile text-gold-600 mr-1"></i> Bonus: Properti stiker wisuda, kacamata hitam & kursi keluarga.</span>
+                    <span class="font-semibold text-maroon-700 italic">Arahan gaya dari tim!</span>
+                </div>
+            </div>
+
+            <!-- Package Selection Catalog -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-gray-900 text-lg">Pilih Paket Foto Wisuda</h3>
+                    <span class="text-xs bg-maroon-50 text-maroon-700 px-3 py-1 rounded-full font-semibold">Klik paket untuk memilih</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Package 1 -->
+                    <div id="pkg1Card" onclick="selectPackage(1)"
+                        class="bg-white rounded-3xl p-6 border-2 border-gray-200 hover:border-gold-500 cursor-pointer transition-all shadow-sm relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 bg-gray-100 text-gray-600 px-4 py-1.5 rounded-bl-2xl text-xs font-bold transition group-hover:bg-gold-500 group-hover:text-white pkg-badge-1">
+                            Paket 1
+                        </div>
+                        <div class="mb-3">
+                            <span class="inline-block bg-maroon-50 text-maroon-700 text-[11px] font-bold px-2.5 py-1 rounded-md mb-2">Graduation 1</span>
+                            <h4 class="text-xl font-extrabold text-maroon-800">Rp 95.000</h4>
+                            <span class="text-xs text-gray-400 line-through">Normal Rp 115.000</span>
+                        </div>
+                        <ul class="space-y-2 text-xs text-gray-600 mb-6">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-600 mr-2"></i> Durasi sesi pemotretan <strong>5 menit</strong></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-600 mr-2"></i> Akses file mentah full via <strong>Google Drive</strong></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-600 mr-2"></i> <strong>5 foto pilihan</strong> dengan proses editing (color/retouch)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-600 mr-2"></i> Cetak fisik <strong>1 lembar A4 full</strong></li>
+                        </ul>
+                        <div class="flex items-center justify-between pt-3 border-t border-cream-200">
+                            <span class="text-xs font-semibold text-gray-500 select-status-1">Belum Dipilih</span>
+                            <div class="w-6 h-6 rounded-full border-2 border-gray-300 flex items-center justify-center radio-circle-1">
+                                <div class="w-3 h-3 rounded-full bg-gold-500 opacity-0 radio-dot-1 transition"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Package 2 -->
+                    <div id="pkg2Card" onclick="selectPackage(2)"
+                        class="bg-white rounded-3xl p-6 border-2 border-gray-200 hover:border-gold-500 cursor-pointer transition-all shadow-sm relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 bg-gray-100 text-gray-600 px-4 py-1.5 rounded-bl-2xl text-xs font-bold transition group-hover:bg-gold-500 group-hover:text-white pkg-badge-2">
+                            Paket 2 (Rekomendasi)
+                        </div>
+                        <div class="mb-3">
+                            <span class="inline-block bg-maroon-50 text-maroon-700 text-[11px] font-bold px-2.5 py-1 rounded-md mb-2">Graduation 2</span>
+                            <h4 class="text-xl font-extrabold text-maroon-800">Rp 155.000</h4>
+                            <span class="text-xs text-gray-400 line-through">Normal Rp 230.000</span>
+                        </div>
+                        <ul class="space-y-2 text-xs text-gray-600 mb-6">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-600 mr-2"></i> Durasi sesi pemotretan <strong>10 menit</strong></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-600 mr-2"></i> Akses file mentah full via <strong>Google Drive</strong></li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-600 mr-2"></i> <strong>10 foto pilihan</strong> dengan proses editing (color/retouch)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-gold-600 mr-2"></i> Cetak fisik <strong>2 lembar A4 full frame</strong></li>
+                        </ul>
+                        <div class="flex items-center justify-between pt-3 border-t border-cream-200">
+                            <span class="text-xs font-semibold text-gray-500 select-status-2">Belum Dipilih</span>
+                            <div class="w-6 h-6 rounded-full border-2 border-gray-300 flex items-center justify-center radio-circle-2">
+                                <div class="w-3 h-3 rounded-full bg-gold-500 opacity-0 radio-dot-2 transition"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment & Confirmation Section -->
+            <div id="paymentSection" class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-gold-500/20 space-y-6">
+                <div class="border-b border-cream-200 pb-4">
+                    <h3 class="font-bold text-gray-900 text-lg">Informasi Pembayaran & Konfirmasi</h3>
+                    <p class="text-xs text-gray-500 mt-0.5">Lakukan transfer sesuai total paket yang dipilih ke rekening berikut:</p>
+                </div>
+
+                <!-- Bank Info Box -->
+                <div class="bg-gradient-to-r from-cream-100 to-amber-50 p-4 sm:p-5 rounded-2xl border border-gold-500/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div class="space-y-1">
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">BANK BRI</span>
+                            <span class="text-xs text-gray-500 font-medium">Transfer Resmi</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span id="bankAccountNum" class="font-mono font-bold text-lg sm:text-xl text-gray-900 tracking-wider">602601014917506</span>
+                            <button onclick="copyAccount()" class="bg-white hover:bg-gold-500 hover:text-white border border-gold-500 text-gold-700 text-xs px-2.5 py-1 rounded-lg transition shadow-xs">
+                                <i class="fa-regular fa-copy mr-1"></i> Salin
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-600">Atas Nama: <strong class="text-maroon-800">Ridwan Fadhil</strong></p>
+                    </div>
+                    <div class="text-right sm:border-l sm:border-gold-500/30 sm:pl-6 w-full sm:w-auto">
+                        <span class="text-xs text-gray-500 block">Total Tagihan:</span>
+                        <span id="displayTotal" class="text-2xl font-extrabold text-maroon-800">Rp 0</span>
+                    </div>
+                </div>
+
+                <!-- Payment Type Selector (DP / Lunas) -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700">Jenis Pembayaran</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button type="button" onclick="setPaymentType('DP')" id="btnDP"
+                            class="py-3 px-4 rounded-xl border-2 border-gray-200 text-xs font-bold text-gray-700 hover:border-gold-500 transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-wallet text-gold-600"></i>
+                            <span>DP (Min. Rp 50.000)</span>
+                        </button>
+                        <button type="button" onclick="setPaymentType('Lunas')" id="btnLunas"
+                            class="py-3 px-4 rounded-xl border-2 border-gray-200 text-xs font-bold text-gray-700 hover:border-gold-500 transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-circle-check text-gold-600"></i>
+                            <span>Bayar Lunas</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Proof of Transfer Upload -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700">Upload Bukti Transfer Pembayaran</label>
+                    <div class="border-2 border-dashed border-gray-300 rounded-2xl p-6 text-center hover:border-gold-500 transition bg-cream-50 relative cursor-pointer" onclick="document.getElementById('proofInput').click()">
+                        <input type="file" id="proofInput" accept="image/*" class="hidden" onchange="handleProofUpload(event)">
+                        <div id="uploadPlaceholder" class="space-y-2">
+                            <div class="w-12 h-12 rounded-full bg-cream-200 text-gold-600 flex items-center justify-center mx-auto text-lg">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+                            <p class="text-xs font-medium text-gray-700">Klik untuk upload foto / screenshot bukti transfer</p>
+                            <p class="text-[10px] text-gray-400">Format: JPG, PNG, atau JPEG (Maks. 5MB)</p>
+                        </div>
+                        <div id="uploadPreviewContainer" class="hidden space-y-3">
+                            <img id="previewImg" src="" alt="Bukti Transfer" class="max-h-48 mx-auto rounded-xl shadow-md border border-gray-200 object-contain">
+                            <div class="flex items-center justify-center space-x-2 text-xs text-emerald-600 font-semibold">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span id="fileNameDisplay">Bukti berhasil diunggah</span>
+                            </div>
+                            <span class="text-[11px] text-gray-500 underline">Klik untuk ganti gambar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Notice Box -->
+                <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-amber-900 flex items-start space-x-3">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-600 text-base mt-0.5"></i>
+                    <div>
+                        <strong class="font-semibold block mb-0.5">Informasi Penting Verifikasi & Antrean:</strong>
+                        Foto bukti transfer akan dikirimkan langsung bersama invoice ke WhatsApp admin untuk verifikasi keaslian order. Nomor antrean akan dikirimkan admin setelah terverifikasi.
+                    </div>
+                </div>
+
+                <!-- WhatsApp Admin Confirmation Buttons -->
                 <div class="space-y-3 pt-2">
-                    <p class="text-xs font-semibold text-gray-700 text-center">Pilih Admin Tujuan Konfirmasi WhatsApp:</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <button type="button" onclick="sendToWhatsApp('putra')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-600/20 transition text-xs md:text-sm flex items-center justify-center space-x-2">
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700">Kirim Konfirmasi, Foto Bukti & Struk ke WhatsApp Admin</label>
+                    <p class="text-xs text-gray-500">Pilih salah satu admin di bawah ini untuk mengirimkan invoice dan foto bukti transfer secara otomatis:</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <!-- Admin Putra -->
+                        <button onclick="sendToWhatsApp('putra')" 
+                            class="py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm shadow-md transition flex items-center justify-center space-x-2.5">
                             <i class="fa-brands fa-whatsapp text-lg"></i>
                             <div class="text-left">
                                 <span class="block font-bold">Admin Putra</span>
-                                <span class="block text-[10px] text-emerald-100">+62 856-1000-965</span>
+                                <span class="text-[11px] text-emerald-100">+62 856-1000-965</span>
                             </div>
                         </button>
 
-                        <button type="button" onclick="sendToWhatsApp('putri')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-600/20 transition text-xs md:text-sm flex items-center justify-center space-x-2">
+                        <!-- Admin Putri -->
+                        <button onclick="sendToWhatsApp('putri')" 
+                            class="py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm shadow-md transition flex items-center justify-center space-x-2.5">
                             <i class="fa-brands fa-whatsapp text-lg"></i>
                             <div class="text-left">
                                 <span class="block font-bold">Admin Putri</span>
-                                <span class="block text-[10px] text-emerald-100">+62 838-9328-8223</span>
+                                <span class="text-[11px] text-emerald-100">+62 838-9328-8223</span>
                             </div>
                         </button>
                     </div>
                 </div>
+
             </div>
+
         </section>
+
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-maroon-900 text-cream-200 py-8 px-4 mt-12 border-t border-maroon-800 text-center text-xs space-y-2">
-        <p class="font-bold text-white">Self Photo Studio Wisuda STAI Al-Anwar Sarang</p>
-        <p>Lokasi & Tempat: Gedung MZ Lantai 2 | Rembang, Jawa Tengah</p>
-        <p class="text-[11px] text-cream-300 pt-2 border-t border-maroon-800/60 max-w-xl mx-auto">
-            © 2026 STAI Al-Anwar Sarang Self Photo Studio. All rights reserved.
-        </p>
+    <footer class="bg-white border-t border-cream-200 py-6 text-center text-xs text-gray-500 mt-auto">
+        <div class="max-w-4xl mx-auto px-4 space-y-1">
+            <p class="font-semibold text-maroon-800">Self Photo Studio Wisuda STAI Al-Anwar Sarang</p>
+            <p>Gedung MZ Lantai 2 • Melayani Sepenuh Hati untuk Momen Kebahagiaan Anda</p>
+            <p class="text-[10px] text-gray-400 pt-2">&copy; 2026 STAI Al-Anwar Sarang. All rights reserved.</p>
+        </div>
     </footer>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
         // State Management
-        let appState = {
+        let userData = {
             name: '',
             phone: '',
             packageId: null,
             packageName: '',
             packagePrice: 0,
-            paymentType: 'DP',
+            paymentType: '',
             proofUploaded: false,
-            proofFileName: ''
+            proofFileName: '',
+            proofFile: null
         };
 
-        // Initialize on load
-        window.addEventListener('DOMContentLoaded', () => {
+        // On Load Check Local Storage
+        window.onload = function() {
             const savedName = localStorage.getItem('stai_photo_name');
             const savedPhone = localStorage.getItem('stai_photo_phone');
-
             if (savedName && savedPhone) {
-                appState.name = savedName;
-                appState.phone = savedPhone;
-                unlockApp();
+                userData.name = savedName;
+                userData.phone = savedPhone;
+                showCatalogView();
             }
+        };
 
-            // Listen to payment type radio change
-            document.querySelectorAll('input[name="payment-type"]').forEach(radio => {
-                radio.addEventListener('change', (e) => {
-                    appState.paymentType = e.target.value;
-                    updateInvoicePreview();
-                });
-            });
-        });
+        // Handle Gatekeeper Form
+        function handleGatekeeperSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('inputName').value.trim();
+            const phone = document.getElementById('inputPhone').value.trim();
 
-        // Gatekeeper Submit Handler
-        function handleGatekeeperSubmit(event) {
-            event.preventDefault();
-            const nameInput = document.getElementById('user-name').value.trim();
-            const phoneInput = document.getElementById('user-phone').value.trim();
-
-            if (!nameInput || !phoneInput) {
-                showToast('Mohon isi nama lengkap dan nomor WhatsApp.', 'error');
+            if (!name || !phone) {
+                showToast('Mohon lengkapi Nama dan No WhatsApp!', 'error');
                 return;
             }
 
-            appState.name = nameInput;
-            appState.phone = phoneInput;
+            userData.name = name;
+            userData.phone = phone;
 
-            localStorage.setItem('stai_photo_name', nameInput);
-            localStorage.setItem('stai_photo_phone', phoneInput);
+            localStorage.setItem('stai_photo_name', name);
+            localStorage.setItem('stai_photo_phone', phone);
 
-            unlockApp();
-            showToast('Selamat datang, ' + nameInput + '! Silakan pilih paket.', 'success');
+            showCatalogView();
+            showToast('Selamat datang, ' + name + '!', 'success');
         }
 
-        // Unlock App & Hide Gatekeeper
-        function unlockApp() {
-            const modal = document.getElementById('gatekeeper-modal');
-            const mainContent = document.getElementById('main-content');
-            const userBadge = document.getElementById('user-badge');
-            const badgeName = document.getElementById('badge-name');
-
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
-
-            mainContent.classList.remove('filter', 'blur-sm', 'pointer-events-none');
-            userBadge.classList.remove('hidden');
-            userBadge.classList.add('flex');
-            badgeName.textContent = appState.name;
-
-            updateInvoicePreview();
+        function showCatalogView() {
+            document.getElementById('gatekeeperSection').classList.add('hidden');
+            document.getElementById('catalogSection').classList.remove('hidden');
+            document.getElementById('userBadge').classList.remove('hidden');
+            document.getElementById('userBadge').classList.add('flex');
+            document.getElementById('badgeName').innerText = userData.name;
         }
 
-        // Edit User Data
-        function editUserData() {
+        function resetGatekeeper() {
             localStorage.removeItem('stai_photo_name');
             localStorage.removeItem('stai_photo_phone');
-            location.reload();
+            document.getElementById('gatekeeperSection').classList.remove('hidden');
+            document.getElementById('catalogSection').classList.add('hidden');
+            document.getElementById('userBadge').classList.add('hidden');
+            document.getElementById('userBadge').classList.remove('flex');
+            document.getElementById('inputName').value = '';
+            document.getElementById('inputPhone').value = '';
+            showToast('Silakan masukkan data baru.', 'info');
         }
 
-        // Select Package
-        function selectPackage(id, name, price) {
-            appState.packageId = id;
-            appState.packageName = name;
-            appState.packagePrice = price;
+        // Package Selection
+        function selectPackage(id) {
+            userData.packageId = id;
+            const card1 = document.getElementById('pkg1Card');
+            const card2 = document.getElementById('pkg2Card');
+            const status1 = document.querySelector('.select-status-1');
+            const status2 = document.querySelector('.select-status-2');
+            const dot1 = document.querySelector('.radio-dot-1');
+            const dot2 = document.querySelector('.radio-dot-2');
+            const badge1 = document.querySelector('.pkg-badge-1');
+            const badge2 = document.querySelector('.pkg-badge-2');
 
-            document.getElementById('selected-package-title').textContent = name;
-            document.getElementById('selected-package-price').textContent = formatRupiah(price);
+            if (id === 1) {
+                userData.packageName = 'Paket Graduation 1';
+                userData.packagePrice = 95000;
 
-            updateInvoicePreview();
+                card1.className = "bg-cream-50 rounded-3xl p-6 border-2 border-gold-500 shadow-md relative overflow-hidden group transition-all";
+                status1.innerText = "Dipilih ✓";
+                status1.className = "text-xs font-bold text-maroon-800 select-status-1";
+                dot1.style.opacity = "1";
+                badge1.className = "absolute top-0 right-0 bg-gold-500 text-white px-4 py-1.5 rounded-bl-2xl text-xs font-bold transition pkg-badge-1";
 
-            // Smooth scroll to booking section
-            document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' });
-            showToast('Paket ' + name + ' berhasil dipilih!', 'success');
+                card2.className = "bg-white rounded-3xl p-6 border-2 border-gray-200 hover:border-gold-500 cursor-pointer transition-all shadow-sm relative overflow-hidden group";
+                status2.innerText = "Belum Dipilih";
+                status2.className = "text-xs font-semibold text-gray-500 select-status-2";
+                dot2.style.opacity = "0";
+                badge2.className = "absolute top-0 right-0 bg-gray-100 text-gray-600 px-4 py-1.5 rounded-bl-2xl text-xs font-bold transition group-hover:bg-gold-500 group-hover:text-white pkg-badge-2";
+            } else {
+                userData.packageName = 'Paket Graduation 2';
+                userData.packagePrice = 155000;
+
+                card2.className = "bg-cream-50 rounded-3xl p-6 border-2 border-gold-500 shadow-md relative overflow-hidden group transition-all";
+                status2.innerText = "Dipilih ✓";
+                status2.className = "text-xs font-bold text-maroon-800 select-status-2";
+                dot2.style.opacity = "1";
+                badge2.className = "absolute top-0 right-0 bg-gold-500 text-white px-4 py-1.5 rounded-bl-2xl text-xs font-bold transition pkg-badge-2";
+
+                card1.className = "bg-white rounded-3xl p-6 border-2 border-gray-200 hover:border-gold-500 cursor-pointer transition-all shadow-sm relative overflow-hidden group";
+                status1.innerText = "Belum Dipilih";
+                status1.className = "text-xs font-semibold text-gray-500 select-status-1";
+                dot1.style.opacity = "0";
+                badge1.className = "absolute top-0 right-0 bg-gray-100 text-gray-600 px-4 py-1.5 rounded-bl-2xl text-xs font-bold transition group-hover:bg-gold-500 group-hover:text-white pkg-badge-1";
+            }
+
+            document.getElementById('displayTotal').innerText = formatRupiah(userData.packagePrice);
+            showToast(userData.packageName + ' dipilih.', 'success');
         }
 
-        // Format Currency Helper
-        function formatRupiah(number) {
-            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(number);
+        // Payment Type Selection
+        function setPaymentType(type) {
+            userData.paymentType = type;
+            const btnDP = document.getElementById('btnDP');
+            const btnLunas = document.getElementById('btnLunas');
+
+            if (type === 'DP') {
+                btnDP.className = "py-3 px-4 rounded-xl border-2 border-gold-500 bg-gold-50 text-maroon-900 text-xs font-bold transition flex items-center justify-center space-x-2 shadow-xs";
+                btnLunas.className = "py-3 px-4 rounded-xl border-2 border-gray-200 text-xs font-bold text-gray-700 hover:border-gold-500 transition flex items-center justify-center space-x-2";
+            } else {
+                btnLunas.className = "py-3 px-4 rounded-xl border-2 border-gold-500 bg-gold-50 text-maroon-900 text-xs font-bold transition flex items-center justify-center space-x-2 shadow-xs";
+                btnDP.className = "py-3 px-4 rounded-xl border-2 border-gray-200 text-xs font-bold text-gray-700 hover:border-gold-500 transition flex items-center justify-center space-x-2";
+            }
+            showToast('Jenis pembayaran: ' + type, 'info');
         }
 
-        // File Proof Handling
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
+        // Proof Upload with File Object Storage
+        function handleProofUpload(e) {
+            const file = e.target.files[0];
             if (file) {
-                if (file.size > 10 * 1024 * 1024) {
-                    showToast('Ukuran file terlalu besar (maksimal 10MB).', 'error');
-                    return;
-                }
-
-                appState.proofUploaded = true;
-                appState.proofFileName = file.name;
+                userData.proofUploaded = true;
+                userData.proofFileName = file.name;
+                userData.proofFile = file;
 
                 const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('image-preview').src = e.target.result;
-                    document.getElementById('upload-placeholder').classList.add('hidden');
-                    document.getElementById('preview-container').classList.remove('hidden');
-                    updateInvoicePreview();
-                    showToast('Bukti transfer berhasil di-upload!', 'success');
+                reader.onload = function(event) {
+                    document.getElementById('previewImg').src = event.target.result;
+                    document.getElementById('uploadPlaceholder').classList.add('hidden');
+                    document.getElementById('uploadPreviewContainer').classList.remove('hidden');
+                    showToast('Bukti transfer berhasil dimuat!', 'success');
                 }
                 reader.readAsDataURL(file);
             }
         }
 
-        // Remove Proof File
-        function removeProofFile() {
-            appState.proofUploaded = false;
-            appState.proofFileName = '';
-            document.getElementById('proof-file').value = '';
-            document.getElementById('image-preview').src = '#';
-            document.getElementById('upload-placeholder').classList.remove('hidden');
-            document.getElementById('preview-container').classList.add('hidden');
-            updateInvoicePreview();
-            showToast('Bukti transfer dihapus.', 'info');
+        // Copy Bank Account
+        function copyAccount() {
+            const accNum = "602601014917506";
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(accNum).then(() => {
+                    showToast('Nomor rekening berhasil disalin!', 'success');
+                }).catch(() => {
+                    fallbackCopyText(accNum);
+                });
+            } else {
+                fallbackCopyText(accNum);
+            }
         }
 
-        // Copy Account Number
-        function copyAccountNumber() {
-            const accNum = document.getElementById('acc-number').textContent;
+        function fallbackCopyText(text) {
             const textArea = document.createElement("textarea");
-            textArea.value = accNum;
+            textArea.value = text;
+            textArea.style.position = "fixed";
             document.body.appendChild(textArea);
+            textArea.focus();
             textArea.select();
             try {
                 document.execCommand('copy');
-                showToast('Nomor rekening BRI berhasil disalin!', 'success');
+                showToast('Nomor rekening berhasil disalin!', 'success');
             } catch (err) {
                 showToast('Gagal menyalin nomor rekening.', 'error');
             }
             document.body.removeChild(textArea);
         }
 
-        // Update Invoice Preview Generator Text
-        function updateInvoicePreview() {
-            const previewEl = document.getElementById('invoice-preview-text');
-            
-            const pkgText = appState.packageName ? `${appState.packageName} (${formatRupiah(appState.packagePrice)})` : 'Belum dipilih';
-            const proofText = appState.proofUploaded ? `Sudah Di-upload (${appState.proofFileName})` : 'Belum Di-upload ⚠️';
-
-            const text = 
-`==================================
-📄 STRUK PEMESANAN SELF PHOTO STUDIO
-   WISUDA STAI AL-ANWAR SARANG
-==================================
-• Nama Pemesan    : ${appState.name || '-'}
-• Nomor WhatsApp  : ${appState.phone || '-'}
-• Paket Foto      : ${pkgText}
-• Jenis Bayar     : ${appState.paymentType}
-• Status Bukti    : ${proofText}
-• Lokasi Studio   : Gedung MZ Lantai 2
-==================================
-Catatan: Nomor antrean akan dikirimkan 
-langsung oleh admin setelah verifikasi.`;
-
-            previewEl.textContent = text;
-        }
-
-        // Send to WhatsApp Admin
-        function sendToWhatsApp(adminType) {
-            if (!appState.packageId) {
-                showToast('Mohon pilih paket foto terlebih dahulu!', 'error');
-                document.getElementById('packages').scrollIntoView({ behavior: 'smooth' });
-                return;
-            }
-            if (!appState.proofUploaded) {
-                showToast('Mohon upload bukti transfer terlebih dahulu!', 'error');
-                document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' });
-                return;
-            }
-
-            const adminPhone = adminType === 'putra' ? '628561000965' : '6283893288223';
-            const adminName = adminType === 'putra' ? 'Admin Putra' : 'Admin Putri';
-
-            const message = 
-`Halo ${adminName} Self Photo Studio Wisuda STAI Al-Anwar Sarang, saya ingin melakukan konfirmasi pemesanan sesi foto dengan detail berikut:
-
-*Nama Pemesan:* ${appState.name}
-*No WhatsApp:* ${appState.phone}
-*Paket Terpilih:* ${appState.packageName} (${formatRupiah(appState.packagePrice)})
-*Jenis Pembayaran:* ${appState.paymentType}
-*Status Bukti:* Sudah di-upload (${appState.proofFileName})
-
-Mohon verifikasinya dan kirimkan nomor antrean saya. Terima kasih!`;
-
-            const encodedMessage = encodeURIComponent(message);
-            const waUrl = `https://wa.me/${adminPhone}?text=${encodedMessage}`;
-
-            window.open(waUrl, '_blank');
-            showToast('Mengarahkan ke WhatsApp ' + adminName + '...', 'success');
-        }
-
-        // Toast Notification System (Replaces alert)
-        function showToast(message, type = 'info') {
-            const toast = document.getElementById('toast');
-            const toastTitle = document.getElementById('toast-title');
-            const toastMessage = document.getElementById('toast-message');
-            const toastIcon = document.getElementById('toast-icon');
-
-            toastMessage.textContent = message;
-
-            if (type === 'success') {
-                toastTitle.textContent = 'Berhasil';
-                toastIcon.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
-                toast.style.borderLeftColor = '#059669';
-            } else if (type === 'error') {
-                toastTitle.textContent = 'Perhatian';
-                toastIcon.innerHTML = '<i class="fa-solid fa-circle-exclamation text-red-600"></i>';
-                toast.style.borderLeftColor = '#DC2626';
+        function copyTextToClipboard(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text);
             } else {
-                toastTitle.textContent = 'Informasi';
-                toastIcon.innerHTML = '<i class="fa-solid fa-circle-info text-maroon-600"></i>';
-                toast.style.borderLeftColor = '#5C1D24';
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                } catch (err) {}
+                document.body.removeChild(textArea);
+            }
+        }
+
+        // WhatsApp Invoice & Direct Image Sharing Generator
+        async function sendToWhatsApp(adminType) {
+            if (!userData.packageId) {
+                showToast('Mohon pilih paket foto terlebih dahulu!', 'error');
+                return;
+            }
+            if (!userData.paymentType) {
+                showToast('Mohon pilih jenis pembayaran (DP / Lunas)!', 'error');
+                return;
+            }
+            if (!userData.proofUploaded) {
+                showToast('Mohon upload bukti transfer pembayaran!', 'error');
+                return;
+            }
+
+            let adminPhone = adminType === 'putra' ? '628561000965' : '6283893288223';
+            let adminName = adminType === 'putra' ? 'Admin Putra' : 'Admin Putri';
+
+            let message = `*KONFIRMASI PEMESANAN SELF PHOTO STUDIO*
+*Wisuda STAI Al-Anwar Sarang*
+
+Halo ${adminName}, saya ingin mengkonfirmasi pemesanan sesi foto wisuda dengan detail berikut:
+
+• *Nama Pemesan:* ${userData.name}
+• *No WhatsApp:* ${userData.phone}
+• *Paket Dipilih:* ${userData.packageName} (${formatRupiah(userData.packagePrice)})
+• *Status Pembayaran:* ${userData.paymentType}
+• *Lokasi:* Gedung MZ Lantai 2
+
+Bukti transfer terlampir. Mohon bantuannya untuk verifikasi real/fake order & pengiriman nomor antrean. Terima kasih!`;
+
+            let sharedSuccessfully = false;
+
+            // Attempt Web Share API with image file if supported
+            if (navigator.share && userData.proofFile && navigator.canShare) {
+                try {
+                    const shareData = {
+                        title: 'Bukti Transfer - ' + userData.name,
+                        text: message,
+                        files: [userData.proofFile]
+                    };
+                    if (navigator.canShare(shareData)) {
+                        await navigator.share(shareData);
+                        sharedSuccessfully = true;
+                        showToast('Berhasil dibagikan ke WhatsApp admin!', 'success');
+                    }
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        console.warn('Web share with files error:', err);
+                    }
+                }
+            }
+
+            if (!sharedSuccessfully) {
+                // Fallback: Copy message, download proof image for easy attachment, and open WA chat
+                copyTextToClipboard(message);
+
+                if (userData.proofFile) {
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(userData.proofFile);
+                    a.download = `Bukti_Transfer_${userData.name.replace(/\s+/g, '_')}.jpg`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+
+                showToast('Struk disalin & foto bukti diunduh untuk dilampirkan ke WA!', 'info');
+
+                let encodedMessage = encodeURIComponent(message);
+                let waUrl = `https://wa.me/${adminPhone}?text=${encodedMessage}`;
+                setTimeout(() => {
+                    window.open(waUrl, '_blank');
+                }, 1200);
+            }
+        }
+
+        // Utility: Format Rupiah
+        function formatRupiah(angka) {
+            return 'Rp ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        // Custom Toast Notification (Replaces alert)
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMessage.innerText = message;
+            if (type === 'success') {
+                toastTitle.innerText = 'Berhasil';
+                toastIcon.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+            } else if (type === 'error') {
+                toastTitle.innerText = 'Perhatian';
+                toastIcon.innerHTML = '<i class="fa-solid fa-circle-exclamation text-rose-600"></i>';
+            } else {
+                toastTitle.innerText = 'Informasi';
+                toastIcon.innerHTML = '<i class="fa-solid fa-circle-info text-amber-600"></i>';
             }
 
             toast.classList.remove('translate-x-full', 'opacity-0');
-            
-            setTimeout(() => {
-                hideToast();
-            }, 4500);
-        }
+            toast.classList.add('translate-x-0', 'opacity-100');
 
-        function hideToast() {
-            const toast = document.getElementById('toast');
-            toast.classList.add('translate-x-full', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.remove('translate-x-0', 'opacity-100');
+                toast.classList.add('translate-x-full', 'opacity-0');
+            }, 3500);
         }
     </script>
 </body>
